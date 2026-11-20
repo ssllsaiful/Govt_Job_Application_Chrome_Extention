@@ -4,105 +4,139 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Privacy: 100% Local](https://img.shields.io/badge/Privacy-100%25%20Offline%20Local-success.svg)](PRIVACY_POLICY.md)
 
-বাংলাদেশ সরকারি চাকরির আবেদন পোর্টালসমূহে (`*.teletalk.com.bd`) বারবার ম্যানুয়াল টাইপিং ছাড়াই মাত্র **১-ক্লিকে সম্পূর্ণ ফর্ম পূরণ**, একাধিক প্রার্থীর প্রোফাইল নির্বাচন এবং স্বয়ংক্রিয়ভাবে **৩০০×৩০০ পাসপোর্ট ছবি** ও **৩০০×৮০ স্বাক্ষর** আপলোড করার সম্পূর্ণ ফ্রি ও অফলাইন ক্রোম এক্সটেনশন।
+A fast, lightweight, and 100% privacy-focused browser extension designed to eliminate tedious manual typing on all Bangladesh Government Job Recruitment portals (`*.teletalk.com.bd`). Fill complex multi-page government job applications in **1 click**, manage **multiple candidate profiles** directly on the webpage, and automatically upload resized **300×300 passport photos** and **300×80 signatures**!
 
 ---
 
-## 📥 গিটহাব থেকে ডাউনলোড ও ল্যাপটপ/পিসিতে সেটআপ করার সহজ নিয়ম (Step-by-Step Guide)
+## 📥 How to Download & Install on Laptop / PC (Step-by-Step)
 
-যেকোনো সাধারণ ব্যবহারকারী কোনো কোডিং জ্ঞান ছাড়াই মাত্র ২ মিনিটে এটি নিজের ক্রোম ব্রাউজারে যুক্ত করে ব্যবহার করতে পারবেন:
+Anyone can install and run this extension on their computer in under 2 minutes without any programming knowledge:
 
-### ধাপ ১: গিটহাব থেকে জিপ ফাইল ডাউনলোড করুন
-1. এই GitHub পেজের উপরের ডান দিকে থাকা সবুজ রঙের **`<> Code`** বাটনে ক্লিক করুন।
-2. মেনু থেকে **`Download ZIP`** এ ক্লিক করুন।  
-   *(সরাসরি ডাউনলোড করতে [এখানে ক্লিক করুন](https://github.com/ssllsaiful/Govt_Job_Application_Chrome_Extention/archive/refs/heads/main.zip))*
-3. আপনার কম্পিউটারে একটি জিপ ফাইল (`Govt_Job_Application_Chrome_Extention-main.zip`) ডাউনলোড হবে।
-
----
-
-### ধাপ ২: ফাইলটি আনজিপ (Extract) করুন
-1. আপনার কম্পিউটারের **Downloads** ফোল্ডারে যান।
-2. ডাউনলোড করা ফাইলটির উপর মাউসের ডান ক্লিক (Right Click) করে **`Extract All...`** (বা Extract Here) এ ক্লিক করুন।
-3. একটি সাধারণ ফোল্ডার তৈরি হবে (যেমন: `Govt_Job_Application_Chrome_Extention-main`)।  
-   *(ফোল্ডারটি এমন জায়গায় রাখুন যেখান থেকে পরবর্তীতে ভুলবশত ডিলিট না হয়ে যায়, যেমন: Documents ফোল্ডারে)*।
+### Step 1: Download the ZIP File from GitHub
+1. Scroll to the top of this GitHub repository page.
+2. Click the green **`<> Code`** button located on the top right.
+3. Click **`Download ZIP`** from the dropdown menu.  
+   *(Direct download link: [Download Repository ZIP](https://github.com/ssllsaiful/Govt_Job_Application_Chrome_Extention/archive/refs/heads/main.zip))*.
+4. A zip file named `Govt_Job_Application_Chrome_Extention-main.zip` will download to your computer.
 
 ---
 
-### ধাপ ৩: গুগল ক্রোমে এক্সটেনশন যুক্ত করুন
-1. আপনার কম্পিউটারে **Google Chrome** ব্রাউজার খুলুন।  
-   *(এটি Brave, Microsoft Edge বা Opera ব্রাউজারেও একইভাবে কাজ করে)*।
-2. ব্রাউজারের অ্যাড্রেস বারে নিচের লেখাটি লিখে **Enter** চাপুন:
+### Step 2: Extract (Unzip) the Downloaded File
+1. Open your computer's **Downloads** folder.
+2. Right-click on `Govt_Job_Application_Chrome_Extention-main.zip` and select **`Extract All...`** (or *Extract Here*).
+3. A standard folder named `Govt_Job_Application_Chrome_Extention-main` will be created.  
+   *(Tip: Move this folder to your `Documents` or a safe directory so it isn't accidentally deleted later)*.
+
+---
+
+### Step 3: Load the Extension into Google Chrome
+1. Open **Google Chrome** on your computer.  
+   *(Also works identically on **Brave**, **Microsoft Edge**, and **Opera**)*.
+2. In the Chrome address bar (URL bar), type the following and press **Enter**:
    ```text
    chrome://extensions
    ```
-   *(Edge ব্রাউজারের জন্য: `edge://extensions`)*
-3. পেজের উপরের ডান কোণায় থাকা **`Developer mode`** টগল বাটনটি চালু (ON) করুন।
-4. এবার পেজের উপরের বাম কোণায় একটি নতুন বাটন দেখতে পাবেন: **`Load unpacked`** — এটিতে ক্লিক করুন।
-5. একটি উইন্ডো আসবে; সেখান থেকে ধাপ ২-এ আনজিপ করা মূল ফোল্ডারটি (`Govt_Job_Application_Chrome_Extention-main`) সিলেক্ট করে **Select Folder** বাটনে চাপ দিন।
-6. ব্যাস! এক্সটেনশনটি সাথে সাথে আপনার ব্রাউজারে ইনস্টল হয়ে যাবে।
+   *(For Microsoft Edge, type: `edge://extensions`)*.
+3. In the top-right corner of the Extensions page, toggle **`Developer mode`** to **ON**.
+4. In the top-left corner, click the **`Load unpacked`** button.
+5. In the file picker dialog, browse to and select the extracted folder:  
+   `Govt_Job_Application_Chrome_Extention-main`
+6. Click **Select Folder**.  
+7. Congratulations! The extension **"Teletalk Job Application Autofill BD"** is now installed and active in your browser.
 
 ---
 
-### ধাপ ৪: এক্সটেনশনটি পিন (Pin) করুন
-1. ক্রোম ব্রাউজারের উপরে ডান পাশে এক্সটেনশন আইকনে (পাজল চিহ্ন 🧩) ক্লিক করুন।
-2. তালিকায় **"Teletalk Job Application Autofill BD"** এর পাশে থাকা **Pin (📌)** আইকনে ক্লিক করুন।
-3. এখন থেকে ব্রাউজারের উপরে এক্সটেনশনের সবুজ রঙের লোগোটি সবসময় দেখতে পাবেন।
+### Step 4: Pin the Extension to Chrome Toolbar
+1. Click the **Extensions icon (puzzle piece 🧩)** in Chrome's top-right toolbar.
+2. Find **"Teletalk Job Application Autofill BD"** in the list.
+3. Click the **Pin icon (📌)** next to it so the green icon is always visible in your browser toolbar.
 
 ---
 
-## 📝 কীভাবে নিজের তথ্য সেভ ও ব্যবহার করবেন (User Guide)
+## 📖 Complete User Guide
 
 ```mermaid
 flowchart TD
-    A["১. এক্সটেনশন আইকনে ক্লিক ➔ Edit Profile"] --> B["২. ব্যক্তিগত তথ্য, ঠিকানা, শিক্ষা ও ছবি-স্বাক্ষর সেভ করুন"]
-    B --> C["৩. Teletalk চাকরির আবেদন ফর্মে যান"]
-    C --> D["৪. পেজের নিচে পছন্দের প্রার্থী সিলেক্ট করে '⚡ Autofill BD Job' চাপুন"]
-    D --> E["৫. ২য় পেজে গিয়ে '📸 Upload Photo & Sign' চাপুন ➔ সম্পূর্ণ!"]
+    A["1. Click Extension Icon ➔ Edit Profile"] --> B["2. Save Personal Details, Education & 300x300 Photo/Sign"]
+    B --> C["3. Open Any Teletalk Job Circular (e.g. dmp.teletalk.com.bd)"]
+    C --> D["4. Select Candidate on Floating Widget ➔ Click '⚡ Autofill BD Job'"]
+    D --> E["5. On 2nd Page (preview.php) ➔ Click '📸 Upload Photo & Sign' ➔ Done!"]
 ```
 
-### ১. আপনার প্রোফাইল তৈরি করুন:
-1. ব্রাউজারের উপরে এক্সটেনশন আইকনে ক্লিক করে **✏️ Edit Profile** এ চাপুন (অথবা আইকনে রাইট ক্লিক করে **Options** সিলেক্ট করুন)।
-2. একটি সুন্দর ড্যাশবোর্ড খুলবে:
-   - **Personal Info:** আপনার ইংরেজি নাম (বড় হাতের), বাংলা নাম (বাংলায়), পিতা-মাতার নাম, জন্ম তারিখ, ধর্ম, মোবাইল নম্বর ও জাতীয় পরিচয়পত্র (NID) নম্বর দিন।
-   - **Addresses:** বর্তমান ও স্থায়ী ঠিকানা নির্বাচন করুন (প্রয়োজনে "Same as Present Address" টিক দিন)।
-   - **Education:** SSC, HSC/Diploma, Graduation এবং Masters-এর তথ্য দিন (রোল, বোর্ড, গ্রুপ, রেজাল্ট CGPA, পাসের সাল ইত্যাদি)।
-   - **Other Qualifications:** "Computer Proficiency" তে Yes সিলেক্ট রাখুন।
-   - **Photo & Sign:** এখানে আপনার পাসপোর্ট ছবি এবং স্বাক্ষর ক্রপ করেTeletalk-এর নিয়ম অনুযায়ী সাইজ করে **Save to Candidate Profile** বাটনে চাপ দিন।
-3. নিচে থাকা **💾 Save Profile** বাটনে ক্লিক করুন।
-4. আপনি চাইলে একাধিক প্রার্থীর তথ্য (যেমন নিজের, ভাইয়ের বা বন্ধুর) রাখতে উপরে থাকা **➕ New Profile** দিয়ে নতুন প্রোফাইল তৈরি করতে পারবেন।
+### 1. Setting Up Your Candidate Profile
+1. Click the extension icon in your Chrome toolbar and select **✏️ Edit Profile** (or right-click the icon and choose **Options**).
+2. A comprehensive dashboard will open:
+   - **Personal Info:** Fill in your English Name (Capital letters), Bangla Name (বাংলায়), Father's and Mother's names (English & Bangla), Date of Birth, Gender, Religion, Mobile Number, and National ID / Birth Reg number.
+   - **Addresses:** Enter your Present and Permanent address (Care of, Village/Road, District, Upazila/Thana, Post Office, Post Code). Check *"Same as Present Address"* if applicable.
+   - **Education:** Enter your SSC, HSC/Diploma, Graduation, and Masters details (Examination, Roll Number, Board, Group/Subject, Result GPA/CGPA, Passing Year, Course Duration).
+   - **Other Qualifications:** Select *"Yes"* for Computer Proficiency.
+   - **Photo & Sign Tab:** Crop and resize your candidate photo to **300×300 px** and signature to **300×80 px**, then click **Save to Candidate Profile**. *(Strictly exported in official Teletalk JPEG `.jpg` format)*.
+3. Click **💾 Save Profile** at the bottom.
+4. **Managing Multiple People:** To add family members or friends, click **➕ New Profile** at the top to create independent profiles for each person.
 
 ---
 
-### ২. চাকরির ফর্মে এক ক্লিকে আবেদন করুন:
-1. যেকোনো Teletalk চাকরির নিয়োগ ফর্মে যান (যেমন: `dmp.teletalk.com.bd`, `bcic.teletalk.com.bd`, `bcs.teletalk.com.bd`, `bogmc.teletalk.com.bd` ইত্যাদি)।
-2. আবেদন পেজের নিচের ডান কোণায় একটি সবুজ ফ্লোটিং উইজেট দেখতে পাবেন:
+### 2. Autofilling a Teletalk Application Form in 1 Click
+1. Open any official Bangladesh Teletalk recruitment form (e.g., `dmp.teletalk.com.bd`, `bcic.teletalk.com.bd`, `bcs.teletalk.com.bd`, `bogmc.teletalk.com.bd`).
+2. In the bottom-right corner of the webpage, you will see a sleek floating widget:
    $$\text{[ 👤 miLLAT ▾ ]} \quad \text{[ ⚡ Autofill BD Job ]}$$
-3. ড্রপডাউন থেকে যার নামে আবেদন করতে চান তাকে সিলেক্ট করুন (যেমন: `MD. SAIFUL ISLAM`, `tareq` অথবা `miLLAT`)।
-4. **`⚡ Autofill BD Job`** বাটনে ক্লিক করুন — মাত্র ১ সেকেন্ডে পুরো ফর্মটি নিখুঁতভাবে পূরণ হয়ে যাবে!
-5. তথ্যগুলো একবার চোখ বুলিয়ে দেখে ক্যাপচা (Verification Code) টাইপ করে **Next** চাপুন।
-6. ২য় পেজে (প্রিভিউ পেজ) আসলেই ফ্লোটিং বাটনটি স্বয়ংক্রিয়ভাবে **`📸 Upload Photo & Sign`** হয়ে যাবে।
-7. বাটনটিতে ক্লিক করলেই প্রার্থীর অফিসিয়াল ৩০০×৩০০ ছবি ও ৩০০×৮০ স্বাক্ষর আপলোড হয়ে যাবে এবং নিচের ঘোষণাপত্রের বক্সে টিক পড়ে যাবে।
-8. **Submit Application** দিয়ে আপনার আবেদন সম্পন্ন করুন!
+3. Select your desired candidate from the dropdown (e.g., `MD. SAIFUL ISLAM`, `tareq`, or `miLLAT`).
+4. Click **`⚡ Autofill BD Job`** — the entire form will be populated accurately in under 1 second!
+5. Verify your information, solve the standard CAPTCHA code, and click **Next / Submit**.
+6. On the 2nd page (`preview.php`), the floating button will automatically change to **`📸 Upload Photo & Sign`**.
+7. Click **`📸 Upload Photo & Sign`** — the candidate's official 300×300 photo and 300×80 signature will attach automatically to the file inputs, live previews will display, and the declaration checkbox will be checked.
+8. Click **Submit Application** to finalize your job application!
 
 ---
 
-## 🌟 এই এক্সটেনশনের বিশেষত্ব
+## 🌟 Key Advantages & Highlights
 
-- **১০০% নির্ভুল ড্রপডাউন সিঙ্ক:** জেলা সিলেক্ট করার পর স্বয়ংক্রিয়ভাবে থানা/উপজেলা লোড হওয়া পর্যন্ত অপেক্ষা করে থানা সিলেক্ট করে। Teletalk-এর অফিশিয়াল ডাটাবেজে থাকা বানান ভুলও (যেমন: *Sabujbhag / Sabujghag*) এটি নিজে থেকেই শুধরে নেয়।
-- **অন-পেজ মাল্টি-প্রোফাইল সুইচার:** একই ল্যাপটপ থেকে পরিবারের একাধিক সদস্য বা ক্লায়েন্টের জন্য পেজ রিফ্রেশ না করেই ক্যান্ডিডেট পরিবর্তন করে আবেদন করা যায়।
-- **কম্পিউটার প্রফিসিয়েন্সি অটো-ম্যাচ:** *"Do you have Computer proficiency?"* প্রশ্নটিতে স্বয়ংক্রিয়ভাবে Yes সিলেক্ট হয়।
-- **সম্পূর্ণ নিরাপদ ও প্রাইভেট:** কোনো প্রকার রিমোট সার্ভার নেই, কোনো ট্র্যাকিং নেই। আপনার যাবতীয় তথ্য ও ছবি কেবল আপনার ল্যাপটপের ব্রাউজারে নিরাপদেই জমা থাকে।
-
----
-
-## 🔄 পরবর্তীতে নতুন আপডেট নেওয়ার নিয়ম
-ভবিষ্যতে যদি এই এক্সটেনশনে নতুন কোনো আপডেট আসে:
-1. গিটহাব থেকে নতুন জিপ ফাইলটি ডাউনলোড করে আগের ফোল্ডারে রিপ্লেস (Replace) করুন।
-2. `chrome://extensions` পেজে গিয়ে এক্সটেনশনটির পাশে থাকা **Reload (🔄)** বাটনে একটি ক্লিক করলেই নতুন ফিচারগুলো আপডেট হয়ে যাবে।
+- **Smart Dependent Dropdowns**: Automatically selects District, waits for Ajax-loaded Upazila/Thana choices, and matches the correct thana even with official database typos (e.g., `Sabujbhag` vs `Sabujghag` vs `Sabujbagdh`).
+- **On-Page Multi-Candidate Switcher**: Switch candidate profiles directly from the live webpage without opening popup menus or refreshing the tab.
+- **Dedicated Candidate Media Isolation**: Each candidate profile stores their own distinct photo and signature privately.
+- **Automatic Question Answering**: Automatically detects questions like *"Do you have Computer proficiency?"* and sets them to **Yes**.
+- **100% Offline & Private**: Zero external servers, zero telemetry, and zero tracking. All candidate data stays stored safely on your own computer via Chrome's local storage.
 
 ---
 
-## 👨‍💻 ডেভলপার ও লাইসেন্স
-- **Developer:** Md. Saiful Islam ([@ssllsaiful](https://github.com/ssllsaiful))
-- **Source Code:** [Govt_Job_Application_Chrome_Extention](https://github.com/ssllsaiful/Govt_Job_Application_Chrome_Extention)
-- **License:** MIT License — সম্পূর্ণ ফ্রি এবং যেকোনো চাকরিপ্রার্থী ব্যবহারের জন্য উন্মুক্ত।
+## 🔄 How to Update When New Changes Are Released
+Whenever a new update is released on this GitHub repository:
+1. Download the latest repository ZIP and extract it, replacing the old files in your folder.
+2. Go to `chrome://extensions` in your browser.
+3. Click the **Reload icon (🔄)** on the extension card. All new updates will apply instantly!
+
+---
+
+## 📂 Project Architecture
+
+```text
+├── manifest.json              # Chrome Extension Manifest V3 configuration
+├── background.js              # Background service worker
+├── content.js                 # In-page floating widget & multi-profile switcher
+├── autofill-engine.js         # Core autofill engine, DOM parser & cascading handler
+├── site-mappings.js           # Portal selector mappings, regex & dropdown aliases
+├── storage.js                 # Multi-profile manager & local storage controller
+├── validation.js              # Bangladeshi mobile, DOB & language validators
+├── bangladesh-data.js         # Bangladesh district and thana database
+├── passport-photo-editor.js   # 300x300 & 300x80 canvas photo & signature editor
+├── popup.html / .css / .js    # Toolbar popup interface
+├── options.html / .css / .js  # Master candidate profile management dashboard
+├── icons/                     # Extension branding icons (16, 48, 128 px)
+├── PRIVACY_POLICY.md          # Privacy policy document
+└── README.md                  # Complete documentation and user manual
+```
+
+---
+
+## 🔒 Privacy Guarantee
+Your privacy is our highest priority. All candidate records, passport photos, and signatures remain strictly inside your browser's private local storage (`chrome.storage.local`). For full details, please review our [Privacy Policy](PRIVACY_POLICY.md).
+
+---
+
+## 👨‍💻 Author & Contributions
+Developed with ❤️ by **Md. Saiful Islam** ([@ssllsaiful](https://github.com/ssllsaiful)) for all Bangladeshi job seekers.  
+Issues, feature suggestions, and pull requests are warmly welcomed!
+
+- **GitHub Profile:** [@ssllsaiful](https://github.com/ssllsaiful)
+- **Repository:** [Govt_Job_Application_Chrome_Extention](https://github.com/ssllsaiful/Govt_Job_Application_Chrome_Extention)
+- **License:** [MIT License](LICENSE) — 100% Free and Open Source.
