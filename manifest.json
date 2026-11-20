@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Teletalk Job Application Autofill BD",
+  "version": "1.0.0",
+  "description": "Autofill Bangladesh Government job application forms across all Teletalk portals with 1-click local profile storage.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*.teletalk.com.bd/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Teletalk Job Autofill BD"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.teletalk.com.bd/*"
+      ],
+      "js": [
+        "site-mappings.js",
+        "autofill-engine.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

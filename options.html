@@ -1,0 +1,2015 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile Settings — Teletalk Job Application Autofill</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+
+<body>
+  <div class="app-layout">
+    <!-- Top Header -->
+    <header class="top-nav">
+      <div class="nav-brand">
+        <div class="nav-logo">BD</div>
+        <div class="nav-titles">
+          <h1>Teletalk Job Autofill BD</h1>
+          <span class="nav-subtitle">Candidate Master Profile & Settings</span>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button id="btn-save-top" class="btn btn-primary">
+          <span>💾</span> Save Profile
+        </button>
+      </div>
+    </header>
+
+    <!-- Candidate Profile Management Bar -->
+    <div class="profile-management-bar">
+      <div class="profile-selector-container">
+        <label for="profile-select" class="profile-selector-label">
+          <span>👤 Candidate Profile:</span>
+        </label>
+        <select id="profile-select" class="profile-select-control" title="Choose candidate profile to view and edit">
+          <!-- Populated dynamically -->
+        </select>
+        <span class="profile-status-pill" id="opt-profile-completion">0% Complete</span>
+      </div>
+      <div class="profile-actions-toolbar">
+        <button type="button" id="btn-create-profile" class="btn-profile-bar" title="Create a new candidate profile">
+          <span>➕</span> New Profile
+        </button>
+        <button type="button" id="btn-duplicate-profile" class="btn-profile-bar" title="Duplicate current profile">
+          <span>📋</span> Duplicate
+        </button>
+        <button type="button" id="btn-rename-profile" class="btn-profile-bar" title="Rename current profile">
+          <span>✏️</span> Rename
+        </button>
+        <button type="button" id="btn-delete-profile" class="btn-profile-bar btn-profile-danger"
+          title="Delete current profile">
+          <span>🗑️</span> Delete
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Container with Tabs -->
+    <main class="main-content">
+      <!-- Tabs Bar -->
+      <nav class="tabs-nav" role="tablist">
+        <button class="tab-btn active" data-tab="tab-personal" role="tab">
+          <span class="tab-icon">👤</span> Personal Info
+        </button>
+        <button class="tab-btn" data-tab="tab-address" role="tab">
+          <span class="tab-icon">🏠</span> Addresses
+        </button>
+        <button class="tab-btn" data-tab="tab-education" role="tab">
+          <span class="tab-icon">🎓</span> Education
+        </button>
+        <button class="tab-btn" data-tab="tab-photo-sign" role="tab">
+          <span class="tab-icon">🖼️</span> Photo & Sign
+        </button>
+        <button class="tab-btn" data-tab="tab-settings" role="tab">
+          <span class="tab-icon">⚙️</span> Site Settings
+        </button>
+        <button class="tab-btn" data-tab="tab-backup" role="tab">
+          <span class="tab-icon">🔐</span> Backup & Security
+        </button>
+      </nav>
+
+      <!-- Toast Alert Notification -->
+      <div id="toast-message" class="toast" style="display: none;"></div>
+
+      <!-- Tab Content Area -->
+      <form id="profile-form" autocomplete="off">
+
+        <!-- ========================================== -->
+        <!-- TAB 1: PERSONAL INFORMATION               -->
+        <!-- ========================================== -->
+        <section id="tab-personal" class="tab-pane active" role="tabpanel">
+          <div class="section-card">
+            <div class="section-header">
+              <h2>Basic Information / সাধারণ তথ্য</h2>
+              <p>Enter your names in English and Bangla matching your NID and Certificates.</p>
+            </div>
+
+            <div class="form-grid">
+              <!-- Applicant Name EN -->
+              <div class="form-group col-6">
+                <label for="fullName">Applicant's Name (English) <span class="required">*</span></label>
+                <input type="text" id="fullName" name="fullName" placeholder="e.g. MD. RAHIM AHMED"
+                  style="text-transform: uppercase;" data-lang="english" />
+                <span class="field-hint">English only • Usually CAPITAL letters in government forms</span>
+                <span class="field-error-msg" id="err-fullName" style="display: none;"></span>
+              </div>
+
+              <!-- Applicant Name BN -->
+              <div class="form-group col-6">
+                <label for="fullNameBn">আবেদনকারীর নাম (বাংলায়) <span class="required">*</span></label>
+                <input type="text" id="fullNameBn" name="fullNameBn" placeholder="যেমন: মো: রহিম আহমেদ"
+                  data-lang="bangla" />
+                <span class="field-hint">শুধুমাত্র বাংলায় লিখুন (Avro / Bijoy)</span>
+                <span class="field-error-msg" id="err-fullNameBn" style="display: none;"></span>
+              </div>
+
+              <!-- Father's Name EN -->
+              <div class="form-group col-6">
+                <label for="fatherName">Father's Name (English)</label>
+                <input type="text" id="fatherName" name="fatherName" placeholder="e.g. MD. ABDUL KARIM"
+                  style="text-transform: uppercase;" data-lang="english" />
+                <span class="field-hint">English only</span>
+                <span class="field-error-msg" id="err-fatherName" style="display: none;"></span>
+              </div>
+
+              <!-- Father's Name BN -->
+              <div class="form-group col-6">
+                <label for="fatherNameBn">পিতার নাম (বাংলায়)</label>
+                <input type="text" id="fatherNameBn" name="fatherNameBn" placeholder="যেমন: মো: আব্দুল করিম"
+                  data-lang="bangla" />
+                <span class="field-hint">শুধুমাত্র বাংলায় লিখুন</span>
+                <span class="field-error-msg" id="err-fatherNameBn" style="display: none;"></span>
+              </div>
+
+              <!-- Mother's Name EN -->
+              <div class="form-group col-6">
+                <label for="motherName">Mother's Name (English)</label>
+                <input type="text" id="motherName" name="motherName" placeholder="e.g. MST. RASHIDA BEGUM"
+                  style="text-transform: uppercase;" data-lang="english" />
+                <span class="field-hint">English only</span>
+                <span class="field-error-msg" id="err-motherName" style="display: none;"></span>
+              </div>
+
+              <!-- Mother's Name BN -->
+              <div class="form-group col-6">
+                <label for="motherNameBn">মাতার নাম (বাংলায়)</label>
+                <input type="text" id="motherNameBn" name="motherNameBn" placeholder="যেমন: মোছা: রাশিদা বেগম"
+                  data-lang="bangla" />
+                <span class="field-hint">শুধুমাত্র বাংলায় লিখুন</span>
+                <span class="field-error-msg" id="err-motherNameBn" style="display: none;"></span>
+              </div>
+
+              <!-- Date of Birth -->
+              <div class="form-group col-4">
+                <label for="dob">Date of Birth (জন্ম তারিখ) <span class="required">*</span></label>
+                <input type="date" id="dob" name="dob" />
+                <span class="field-hint" id="dob-age-hint">Format: YYYY-MM-DD</span>
+              </div>
+
+              <!-- Nationality -->
+              <div class="form-group col-4">
+                <label for="nationality">Nationality (জাতীয়তা)</label>
+                <select id="nationality" name="nationality">
+                  <option value="Bangladeshi" selected>Bangladeshi</option>
+                  <option value="Others">Others</option>
+                </select>
+              </div>
+
+              <!-- Religion -->
+              <div class="form-group col-4">
+                <label for="religion">Religion (ধর্ম)</label>
+                <select id="religion" name="religion">
+                  <option value="Islam">Islam</option>
+                  <option value="Hinduism">Hinduism</option>
+                  <option value="Buddhism">Buddhism</option>
+                  <option value="Christianity">Christianity</option>
+                  <option value="Others">Others</option>
+                </select>
+              </div>
+
+              <!-- Gender -->
+              <div class="form-group col-4">
+                <label for="gender">Gender (লিঙ্গ)</label>
+                <select id="gender" name="gender">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Others">Others</option>
+                </select>
+              </div>
+
+              <!-- Marital Status -->
+              <div class="form-group col-4">
+                <label for="maritalStatus">Marital Status (বৈবাহিক অবস্থা)</label>
+                <select id="maritalStatus" name="maritalStatus">
+                  <option value="Single">Single / Unmarried</option>
+                  <option value="Married">Married</option>
+                  <option value="Divorced">Divorced</option>
+                  <option value="Widowed">Widowed</option>
+                </select>
+              </div>
+
+              <!-- Spouse Name (Conditional) -->
+              <div class="form-group col-4" id="grp-spouse-name" style="display: none;">
+                <label for="spouseName">Spouse Name (স্বামী/স্ত্রীর নাম)</label>
+                <input type="text" id="spouseName" name="spouseName" placeholder="Spouse's Full Name (English)"
+                  data-lang="english" />
+                <span class="field-hint">English only</span>
+                <span class="field-error-msg" id="err-spouseName" style="display: none;"></span>
+              </div>
+
+              <!-- Quota -->
+              <div class="form-group col-6">
+                <label for="quota">Quota (কোটা)</label>
+                <select id="quota" name="quota">
+                  <option value="Not Applicable">Not Applicable (প্রযোজ্য নয় / সাধারণ)</option>
+                  <option value="Child of Freedom Fighter">Child of Freedom Fighter (মুক্তিযোদ্ধার সন্তান)</option>
+                  <option value="Child of Martyred Freedom Fighter">Child of Martyred Freedom Fighter (শহীদ
+                    মুক্তিযোদ্ধার সন্তান)</option>
+                  <option value="Child of War Heroine (Birangana)">Child of War Heroine - Birangana (বীরাঙ্গনার সন্তান)
+                  </option>
+                  <option value="Physically Challenged">Physically Challenged (শারীরিক প্রতিবন্ধী)</option>
+                  <option value="Ethnic Minority">Ethnic Minority (ক্ষুদ্র নৃ-গোষ্ঠী)</option>
+                  <option value="Third Gender">Third Gender (তৃতীয় লিঙ্গ)</option>
+                  <!-- Other portal circular quotas -->
+                  <option value="Freedom Fighter">Freedom Fighter (মুক্তিযোদ্ধা)</option>
+                  <option value="Child/Grandchild of FF">Child/Grandchild of Freedom Fighter</option>
+                  <option value="Orphan">Orphan (এতিম)</option>
+                  <option value="Female">Female Quota (মহিলা)</option>
+                  <option value="Ansar-VDP">Ansar & VDP (আনসার ও ভিডিপি)</option>
+                </select>
+              </div>
+
+              <!-- Departmental Status -->
+              <div class="form-group col-6">
+                <label for="departmentalStatus">Departmental Status (বিভাগীয় অবস্থা)</label>
+                <select id="departmentalStatus" name="departmentalStatus">
+                  <option value="None">None (প্রযোজ্য নয় / সাধারণ)</option>
+                  <option value="Govt. Employee">Govt. Employee (সরকারি কর্মচারী)</option>
+                  <option value="Semi-Govt. Employee">Semi-Govt. Employee (আধা-সরকারি)</option>
+                  <option value="Autonomous">Autonomous (স্বায়ত্তশাসিত)</option>
+                  <option value="Departmental Candidate">Departmental Candidate (বিভাগীয় প্রার্থী)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Document Availability & Numbers Card -->
+          <div class="section-card">
+            <div class="section-header">
+              <h2>Official Identification Documents / জাতীয় পরিচয় ও পাসপোর্ট</h2>
+              <p>Teletalk forms first ask if you have the document (Yes/No), and if Yes, asks for the number.</p>
+            </div>
+
+            <div class="form-grid">
+              <!-- NID Availability -->
+              <div class="form-group col-4">
+                <label for="nidAvailable">National ID Available?</label>
+                <select id="nidAvailable" name="nidAvailable">
+                  <option value="Yes" selected>Yes (আছে)</option>
+                  <option value="No">No (নাই)</option>
+                </select>
+              </div>
+
+              <!-- NID Number -->
+              <div class="form-group col-8" id="grp-nid-number">
+                <label for="nidNumber">National ID Number (১০, ১৩ বা ১৭ ডিজিট)</label>
+                <input type="text" id="nidNumber" name="nidNumber" placeholder="e.g. 19951234567890123" />
+                <span class="field-hint">Never injected into Yes/No dropdowns</span>
+              </div>
+
+              <!-- Birth Reg Availability -->
+              <div class="form-group col-4">
+                <label for="birthRegAvailable">Birth Registration Available?</label>
+                <select id="birthRegAvailable" name="birthRegAvailable">
+                  <option value="No" selected>No (নাই)</option>
+                  <option value="Yes">Yes (আছে)</option>
+                </select>
+              </div>
+
+              <!-- Birth Reg Number -->
+              <div class="form-group col-8" id="grp-breg-number">
+                <label for="birthRegNumber">Birth Registration Number (১৭ ডিজিট)</label>
+                <input type="text" id="birthRegNumber" name="birthRegNumber" placeholder="e.g. 20001234567890123" />
+              </div>
+
+              <!-- Passport Availability -->
+              <div class="form-group col-4">
+                <label for="passportAvailable">Passport Available?</label>
+                <select id="passportAvailable" name="passportAvailable">
+                  <option value="No" selected>No (নাই)</option>
+                  <option value="Yes">Yes (আছে)</option>
+                </select>
+              </div>
+
+              <!-- Passport Number -->
+              <div class="form-group col-8" id="grp-passport-number">
+                <label for="passportNumber">Passport Number</label>
+                <input type="text" id="passportNumber" name="passportNumber" placeholder="e.g. A01234567" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Information Card -->
+          <div class="section-card">
+            <div class="section-header">
+              <h2>Contact Information / যোগাযোগ</h2>
+              <p>Teletalk sends SMS verification and User ID via Mobile Number.</p>
+            </div>
+
+            <div class="form-grid">
+              <!-- Mobile Number -->
+              <div class="form-group col-4">
+                <label for="mobile">Mobile Number <span class="required">*</span></label>
+                <input type="tel" id="mobile" name="mobile" placeholder="017XXXXXXXX" maxlength="11" />
+                <span class="field-hint">11-digit Bangladeshi mobile</span>
+              </div>
+
+              <!-- Confirm Mobile Number -->
+              <div class="form-group col-4">
+                <label for="confirmMobile">Confirm Mobile Number <span class="required">*</span></label>
+                <input type="tel" id="confirmMobile" name="confirmMobile" placeholder="017XXXXXXXX" maxlength="11" />
+              </div>
+
+              <!-- Email -->
+              <div class="form-group col-4">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="applicant@example.com" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 2: ADDRESSES                          -->
+        <!-- ========================================== -->
+        <section id="tab-address" class="tab-pane" role="tabpanel">
+          <!-- Present Address -->
+          <div class="section-card">
+            <div class="section-header">
+              <h2>Present Address (বর্তমান ঠিকানা)</h2>
+              <p>Mailing address for interview cards and communication.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group col-6">
+                <label for="presentCareOf">Care Of (তত্ত্বাবধায়ক)</label>
+                <input type="text" id="presentCareOf" name="presentCareOf" placeholder="e.g. MD. ABDUL KARIM" />
+              </div>
+
+              <div class="form-group col-6">
+                <label for="presentVillage">Village / Road / House / Flat (গ্রাম/রাস্তা/বাড়ি)</label>
+                <input type="text" id="presentVillage" name="presentVillage"
+                  placeholder="e.g. House 12, Road 4, Sector 7" />
+              </div>
+
+              <div class="form-group col-4">
+                <label for="presentDistrict">District (জেলা) <span class="required">*</span></label>
+                <select id="presentDistrict" name="presentDistrict">
+                  <option value="">Select District</option>
+                </select>
+                <span class="field-hint">All 64 districts of Bangladesh</span>
+              </div>
+
+              <div class="form-group col-4">
+                <label for="presentUpazila">Upazila / Police Station (উপজেলা/থানা) <span
+                    class="required">*</span></label>
+                <select id="presentUpazila" name="presentUpazila">
+                  <option value="">-- Select District First --</option>
+                </select>
+                <input type="text" id="presentUpazilaCustom" name="presentUpazilaCustom"
+                  placeholder="Or enter custom upazila / thana" style="display: none; margin-top: 4px;" />
+                <span class="field-hint">Auto-populated based on selected district</span>
+              </div>
+
+              <div class="form-group col-2">
+                <label for="presentPostOffice">Post Office</label>
+                <input type="text" id="presentPostOffice" name="presentPostOffice"
+                  placeholder="e.g. Uttara / Dhanmondi" />
+              </div>
+
+              <div class="form-group col-2">
+                <label for="presentPostCode">Post Code</label>
+                <input type="text" id="presentPostCode" name="presentPostCode" placeholder="e.g. 1230" maxlength="4" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Permanent Address -->
+          <div class="section-card">
+            <div class="section-header flex-header">
+              <div>
+                <h2>Permanent Address (স্থায়ী ঠিকানা)</h2>
+                <p>Official permanent residence matching your National ID.</p>
+              </div>
+              <label class="checkbox-pill">
+                <input type="checkbox" id="sameAsPresent" name="sameAsPresent" />
+                <span>Same as Present Address (বর্তমান ঠিকানার অনুরূপ)</span>
+              </label>
+            </div>
+
+            <div id="permanent-address-fields" class="form-grid">
+              <div class="form-group col-6">
+                <label for="permanentCareOf">Care Of (তত্ত্বাবধায়ক)</label>
+                <input type="text" id="permanentCareOf" name="permanentCareOf" placeholder="e.g. MD. ABDUL KARIM" />
+              </div>
+
+              <div class="form-group col-6">
+                <label for="permanentVillage">Village / Road / House / Flat (গ্রাম/রাস্তা/বাড়ি)</label>
+                <input type="text" id="permanentVillage" name="permanentVillage"
+                  placeholder="e.g. Village Name, P.O. Box" />
+              </div>
+
+              <div class="form-group col-4">
+                <label for="permanentDistrict">District (জেলা)</label>
+                <select id="permanentDistrict" name="permanentDistrict">
+                  <option value="">Select District</option>
+                </select>
+                <span class="field-hint">All 64 districts</span>
+              </div>
+
+              <div class="form-group col-4">
+                <label for="permanentUpazila">Upazila / Police Station (উপজেলা/থানা)</label>
+                <select id="permanentUpazila" name="permanentUpazila">
+                  <option value="">-- Select District First --</option>
+                </select>
+                <input type="text" id="permanentUpazilaCustom" name="permanentUpazilaCustom"
+                  placeholder="Or enter custom upazila / thana" style="display: none; margin-top: 4px;" />
+              </div>
+
+              <div class="form-group col-2">
+                <label for="permanentPostOffice">Post Office</label>
+                <input type="text" id="permanentPostOffice" name="permanentPostOffice"
+                  placeholder="e.g. Bogura Sadar" />
+              </div>
+
+              <div class="form-group col-2">
+                <label for="permanentPostCode">Post Code</label>
+                <input type="text" id="permanentPostCode" name="permanentPostCode" placeholder="e.g. 5810"
+                  maxlength="4" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 3: EDUCATION                          -->
+        <!-- ========================================== -->
+        <section id="tab-education" class="tab-pane" role="tabpanel">
+          <!-- SSC Section -->
+          <div class="section-card">
+            <div class="section-header">
+              <h2>SSC / Equivalent Level (এস.এস.সি / সমমান)</h2>
+              <p>Secondary School Certificate or equivalent exam details.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group col-4">
+                <label for="sscExamination">Examination</label>
+                <select id="sscExamination" name="sscExamination">
+                  <option value="S.S.C" selected>S.S.C</option>
+                  <option value="Dakhil">Dakhil</option>
+                  <option value="S.S.C Vocational">S.S.C Vocational</option>
+                  <option value="O Level">O Level</option>
+                  <option value="Equivalent">Equivalent</option>
+                </select>
+              </div>
+
+              <div class="form-group col-4">
+                <label for="sscRollNumber">Roll Number</label>
+                <input type="text" id="sscRollNumber" name="sscRollNumber" placeholder="e.g. 123456" />
+              </div>
+
+              <div class="form-group col-4">
+                <label for="sscGroupSubject">Group / Subject</label>
+                <select id="sscGroupSubject" name="sscGroupSubject">
+                  <option value="Science" selected>Science</option>
+                  <option value="Humanities">Humanities</option>
+                  <option value="Business Studies">Business Studies</option>
+                  <option value="Vocational">Vocational</option>
+                  <option value="Others">Others</option>
+                </select>
+              </div>
+
+              <div class="form-group col-4">
+                <label for="sscBoard">Board</label>
+                <select id="sscBoard" name="sscBoard">
+                  <option value="Dhaka" selected>Dhaka</option>
+                  <option value="Rajshahi">Rajshahi</option>
+                  <option value="Comilla">Comilla</option>
+                  <option value="Jessore">Jessore</option>
+                  <option value="Chittagong">Chittagong</option>
+                  <option value="Barisal">Barisal</option>
+                  <option value="Sylhet">Sylhet</option>
+                  <option value="Dinajpur">Dinajpur</option>
+                  <option value="Mymensingh">Mymensingh</option>
+                  <option value="Madrasah">Madrasah</option>
+                  <option value="Technical">Technical</option>
+                  <option value="Cambridge">Cambridge</option>
+                  <option value="Edexcel">Edexcel</option>
+                </select>
+              </div>
+
+              <div class="form-group col-4">
+                <label for="sscResultType">Result Scale / Type</label>
+                <select id="sscResultType" name="sscResultType">
+                  <option value="GPA(out of 5)" selected>GPA(out of 5)</option>
+                  <option value="First Division">First Division</option>
+                  <option value="Second Division">Second Division</option>
+                  <option value="Third Division">Third Division</option>
+                </select>
+              </div>
+
+              <div class="form-group col-2">
+                <label for="sscResultMarks">GPA / Marks</label>
+                <input type="text" id="sscResultMarks" name="sscResultMarks" placeholder="e.g. 5.00" />
+              </div>
+
+              <div class="form-group col-2">
+                <label for="sscPassingYear">Passing Year</label>
+                <input type="text" id="sscPassingYear" name="sscPassingYear" placeholder="e.g. 2016" maxlength="4" />
+              </div>
+            </div>
+          </div>
+
+          <!-- HSC Section -->
+          <div class="section-card">
+            <div class="section-header">
+              <h2>HSC / Equivalent Level (এইচ.এস.সি / সমমান)</h2>
+              <p>Higher Secondary Certificate or equivalent exam details.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group col-4">
+                <label for="hscExamination">Examination</label>
+                <select id="hscExamination" name="hscExamination">
+                  <option value="H.S.C" selected>H.S.C</option>
+                  <option value="Alim">Alim</option>
+                  <option value="H.S.C Vocational">H.S.C Vocational</option>
+                  <option value="H.S.C BM">H.S.C BM</option>
+                  <option value="Diploma in Engineering">Diploma in Engineering</option>
+                  <option value="A Level">A Level</option>
+                  <option value="Equivalent">Equivalent</option>
+                </select>
+              </div>
+
+              <div class="form-group col-4">
+                <label for="hscRollNumber">Roll Number</label>
+                <input type="text" id="hscRollNumber" name="hscRollNumber" placeholder="e.g. 654321" />
+              </div>
+
+              <div class="form-group col-4">
+                <label for="hscGroupSubject">Group / Subject</label>
+                <select id="hscGroupSubject" name="hscGroupSubject">
+                  <option value="Science" selected>Science</option>
+                  <option value="Humanities">Humanities</option>
+                  <option value="Business Studies">Business Studies</option>
+                  <option value="Vocational">Vocational</option>
+                  <option value="Others">Others</option>
+                </select>
+                <input type="text" id="hscGroupSubjectCustom" name="hscGroupSubjectCustom"
+                  placeholder="Or enter custom technology / discipline" style="display: none; margin-top: 4px;" />
+                <span class="field-hint" id="hsc-group-hint">Select group (switches to Diploma Technologies when Diploma
+                  is chosen)</span>
+              </div>
+
+              <div class="form-group col-4">
+                <label for="hscBoard">Board</label>
+                <select id="hscBoard" name="hscBoard">
+                  <option value="Dhaka" selected>Dhaka</option>
+                  <option value="Rajshahi">Rajshahi</option>
+                  <option value="Comilla">Comilla</option>
+                  <option value="Jessore">Jessore</option>
+                  <option value="Chittagong">Chittagong</option>
+                  <option value="Barisal">Barisal</option>
+                  <option value="Sylhet">Sylhet</option>
+                  <option value="Dinajpur">Dinajpur</option>
+                  <option value="Mymensingh">Mymensingh</option>
+                  <option value="Madrasah">Madrasah</option>
+                  <option value="Technical">Technical</option>
+                  <option value="Cambridge">Cambridge</option>
+                  <option value="Edexcel">Edexcel</option>
+                </select>
+              </div>
+
+              <div class="form-group col-4">
+                <label for="hscResultType">Result Scale / Type</label>
+                <select id="hscResultType" name="hscResultType">
+                  <option value="GPA(out of 5)" selected>GPA(out of 5)</option>
+                  <option value="GPA(out of 4)">GPA(out of 4)</option>
+                  <option value="First Division">First Division</option>
+                  <option value="Second Division">Second Division</option>
+                  <option value="Third Division">Third Division</option>
+                </select>
+              </div>
+
+              <div class="form-group col-2">
+                <label for="hscResultMarks">GPA / Marks</label>
+                <input type="text" id="hscResultMarks" name="hscResultMarks" placeholder="e.g. 5.00" />
+              </div>
+
+              <div class="form-group col-2">
+                <label for="hscPassingYear">Passing Year</label>
+                <input type="text" id="hscPassingYear" name="hscPassingYear" placeholder="e.g. 2018" maxlength="4" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Graduation Section -->
+          <div class="section-card">
+            <div class="section-header">
+              <h2>Graduation / Equivalent Level (স্নাতক / সমমান)</h2>
+              <p>Bachelor degree or equivalent graduation details.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group col-4">
+                <label for="graExamination">Examination / Degree</label>
+                <input type="text" id="graExamination" name="graExamination" list="grad-degrees-list"
+                  placeholder="e.g. B.Sc (Bachelor of Science), B.Sc Engineering, B.B.A" />
+                <datalist id="grad-degrees-list"></datalist>
+                <span class="field-hint">Select standard degree or type custom</span>
+              </div>
+
+              <div class="form-group col-4">
+                <label for="graInstitute">University / Institution</label>
+                <input type="text" id="graInstitute" name="graInstitute" list="universities-list"
+                  placeholder="Search Public & UGC Approved Universities" />
+                <datalist id="universities-list"></datalist>
+                <span class="field-hint">All 53+ Public & 100+ UGC Private Universities</span>
+              </div>
+
+              <div class="form-group col-4">
+                <label for="graSubject">Subject / Major</label>
+                <input type="text" id="graSubject" name="graSubject" list="grad-subjects-list"
+                  placeholder="Search graduation subjects & majors" />
+                <datalist id="grad-subjects-list"></datalist>
+                <span class="field-hint">All academic subjects & engineering disciplines</span>
+              </div>
+
+              <div class="form-group col-4">
+                <label for="graResultType">Result Type</label>
+                <select id="graResultType" name="graResultType">
+                  <option value="GPA(out of 4)" selected>GPA(out of 4) / CGPA</option>
+                  <option value="First Class">First Class</option>
+                  <option value="Second Class">Second Class</option>
+                  <option value="Passed">Passed</option>
+                </select>
+              </div>
+
+              <div class="form-group col-2">
+                <label for="graResultMarks">CGPA / Score</label>
+                <input type="text" id="graResultMarks" name="graResultMarks" placeholder="e.g. 3.75" />
+              </div>
+
+              <div class="form-group col-3">
+                <label for="graPassingYear">Passing Year</label>
+                <input type="text" id="graPassingYear" name="graPassingYear" placeholder="e.g. 2022" maxlength="4" />
+              </div>
+
+              <div class="form-group col-3">
+                <label for="graDuration">Course Duration</label>
+                <select id="graDuration" name="graDuration">
+                  <option value="4 Years" selected>4 Years (৪ বছর)</option>
+                  <option value="3 Years">3 Years (৩ বছর)</option>
+                  <option value="5 Years">5 Years (৫ বছর)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masters Section (Optional) -->
+          <div class="section-card">
+            <div class="section-header flex-header">
+              <div>
+                <h2>Masters / Post-Graduation (স্নাতকোত্তর / সমমান)</h2>
+                <p>Optional: Enable if applying for posts requiring Masters degree.</p>
+              </div>
+              <label class="checkbox-pill">
+                <input type="checkbox" id="masApplicable" name="masApplicable" />
+                <span>Include Masters Information</span>
+              </label>
+            </div>
+
+            <div id="masters-fields" class="form-grid" style="display: none;">
+              <div class="form-group col-4">
+                <label for="masExamination">Examination / Degree</label>
+                <input type="text" id="masExamination" name="masExamination"
+                  placeholder="e.g. M.Sc in Chemistry, M.B.A" />
+              </div>
+
+              <div class="form-group col-4">
+                <label for="masInstitute">University / Institution</label>
+                <input type="text" id="masInstitute" name="masInstitute" list="universities-list"
+                  placeholder="e.g. University of Dhaka, National University" />
+              </div>
+
+              <div class="form-group col-4">
+                <label for="masSubject">Subject / Major</label>
+                <input type="text" id="masSubject" name="masSubject" list="grad-subjects-list"
+                  placeholder="e.g. Chemistry, Finance" />
+              </div>
+
+              <div class="form-group col-4">
+                <label for="masResultType">Result Type</label>
+                <select id="masResultType" name="masResultType">
+                  <option value="GPA(out of 4)" selected>GPA(out of 4) / CGPA</option>
+                  <option value="First Class">First Class</option>
+                  <option value="Second Class">Second Class</option>
+                  <option value="Passed">Passed</option>
+                </select>
+              </div>
+
+              <div class="form-group col-2">
+                <label for="masResultMarks">CGPA / Score</label>
+                <input type="text" id="masResultMarks" name="masResultMarks" placeholder="e.g. 3.80" />
+              </div>
+
+              <div class="form-group col-3">
+                <label for="masPassingYear">Passing Year</label>
+                <input type="text" id="masPassingYear" name="masPassingYear" placeholder="e.g. 2024" maxlength="4" />
+              </div>
+
+              <div class="form-group col-3">
+                <label for="masDuration">Course Duration</label>
+                <select id="masDuration" name="masDuration">
+                  <option value="1 Year" selected>1 Year (১ বছর)</option>
+                  <option value="2 Years">2 Years (২ বছর)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Other Qualifications / Experiences Section -->
+          <div class="section-card">
+            <div class="section-header">
+              <h2>💼 Other Qualifications / Experiences (অন্যান্য যোগ্যতা ও অভিজ্ঞতা)</h2>
+              <p>Standard questions frequently asked on Bangladesh recruitment portals (BCIC, DSS, DGF, BOGMC, etc.)</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group col-6">
+                <label for="computerProficiency">Computer Proficiency (কম্পিউটার দক্ষতা)</label>
+                <select id="computerProficiency" name="computerProficiency">
+                  <option value="Yes" selected>Yes (হ্যাঁ)</option>
+                  <option value="No">No (না)</option>
+                </select>
+                <span class="field-hint">Answers "Do you have Computer proficiency?" automatically on live forms</span>
+              </div>
+
+              <div class="form-group col-6">
+                <label for="computerTypingSpeed">Computer Typing Speed (টাইপিং দক্ষতা)</label>
+                <select id="computerTypingSpeed" name="computerTypingSpeed">
+                  <option value="Yes" selected>Yes (Standard Bangla & English Speed)</option>
+                  <option value="No">No</option>
+                </select>
+                <span class="field-hint">Answers "Minimum typing speed" questions for office & computer posts</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 4: PHOTO & SIGN                        -->
+        <!-- ========================================== -->
+        <section id="tab-photo-sign" class="tab-pane" role="tabpanel">
+          <!-- Subtabs Bar for Photo & Sign -->
+          <div class="subtabs-bar">
+            <button type="button" class="subtab-btn active" data-subtab="subtab-photo">
+              <span>📸</span> Passport Photo Editor (300 × 300 px)
+            </button>
+            <button type="button" class="subtab-btn" data-subtab="subtab-signature">
+              <span>✍️</span> Signature Editor (300 × 80 px)
+            </button>
+            <button type="button" class="subtab-btn" data-subtab="subtab-saved-media">
+              <span>📁</span> Saved Photos & Signatures
+            </button>
+          </div>
+
+          <!-- ---------------------------------------- -->
+          <!-- SUBTAB 1: PASSPORT PHOTO EDITOR (300x300)-->
+          <!-- ---------------------------------------- -->
+          <div id="subtab-photo" class="subtab-pane active">
+            <div class="section-card">
+              <div class="section-header flex-header">
+                <div>
+                  <h2>Passport Photo Editor / পাসপোর্ট সাইজ ছবি প্রস্তুতকারক</h2>
+                  <p>Standard Bangladesh recruitment specification: Exactly <strong>300 × 300 pixels</strong>, max 100
+                    KB, clear face view.</p>
+                </div>
+                <div class="spec-badge">
+                  <span>Target: <strong>300 × 300 px</strong> (Max 100 KB)</span>
+                </div>
+              </div>
+
+              <!-- Top Action Bar -->
+              <div class="editor-top-toolbar">
+                <div class="editor-toolbar-group">
+                  <input type="file" id="photo-file-input" accept="image/png, image/jpeg, image/jpg, image/webp"
+                    style="display: none;" />
+                  <button type="button" id="btn-browse-photo" class="btn-editor-tool btn-primary-action"
+                    title="Upload new photo">
+                    <span>📁</span> Choose Photo
+                  </button>
+                  <button type="button" id="photo-btn-replace" class="btn-editor-tool" title="Replace current photo">
+                    <span>🔄</span> Replace
+                  </button>
+                  <button type="button" id="photo-btn-remove" class="btn-editor-tool btn-danger-action"
+                    title="Remove photo">
+                    <span>🗑️</span> Remove
+                  </button>
+                  <span id="photo-file-info" class="file-info-badge" style="display: none;"></span>
+                </div>
+                <div class="editor-toolbar-group">
+                  <button type="button" id="photo-btn-undo" class="btn-editor-tool" title="Undo change (Ctrl+Z)"
+                    disabled>
+                    <span>↩️</span> Undo
+                  </button>
+                  <button type="button" id="photo-btn-redo" class="btn-editor-tool" title="Redo change (Ctrl+Y)"
+                    disabled>
+                    <span>↪️</span> Redo
+                  </button>
+                  <button type="button" id="photo-btn-compare" class="btn-editor-tool"
+                    title="Press and hold to compare with unedited original">
+                    <span>👁️</span> Hold to Compare
+                  </button>
+                  <button type="button" id="photo-btn-reset-all" class="btn-editor-tool"
+                    title="Discard all edits and revert to original">
+                    <span>↺</span> Reset All
+                  </button>
+                </div>
+              </div>
+
+              <!-- Upload Drag & Drop Zone -->
+              <div class="media-upload-zone" id="photo-drop-zone">
+                <span class="upload-hint">Drag & drop your JPG, JPEG, PNG, or WEBP image here, or click "Choose Photo"
+                  above</span>
+              </div>
+
+              <!-- Editor Workspace Grid (Left: Stage, Right: Tools Accordion) -->
+              <div class="media-editor-grid">
+                <!-- Left: Canvas Stage Viewport -->
+                <div class="canvas-stage-wrapper">
+                  <div class="canvas-container checkerboard" id="photo-canvas-container">
+                    <canvas id="photo-canvas" width="300" height="300"></canvas>
+                    <canvas id="photo-overlay-canvas" class="editor-overlay-canvas" width="300" height="300"></canvas>
+                    <!-- AI Loading Spinner Overlay -->
+                    <div id="photo-loading-overlay" class="editor-loading-overlay" style="display: none;">
+                      <div class="spinner"></div>
+                      <span>Separating foreground with AI...</span>
+                    </div>
+                  </div>
+
+                  <!-- Floating Canvas Zoom & Pan Bar -->
+                  <div class="canvas-floating-toolbar">
+                    <span>Zoom: <strong id="photo-zoom-val">100%</strong></span>
+                    <button type="button" class="step-btn" id="photo-zoom-out" title="Zoom Out">−</button>
+                    <input type="range" id="photo-zoom" min="15" max="400" value="100" step="1" title="Canvas Zoom" />
+                    <button type="button" class="step-btn" id="photo-zoom-in" title="Zoom In">+</button>
+                    <button type="button" class="chip-pill" id="photo-zoom-reset" title="Reset to fit">Fit</button>
+                  </div>
+
+                  <div class="canvas-help-text">
+                    <span>🖱️ Drag canvas to pan • Scroll to zoom • Hold "Compare" to view original</span>
+                  </div>
+
+                  <!-- Fine Pan Nudge Controls -->
+                  <div class="nudge-pad">
+                    <button type="button" class="nudge-btn" id="photo-nudge-up" title="Nudge Up">⬆️</button>
+                    <div class="nudge-row">
+                      <button type="button" class="nudge-btn" id="photo-nudge-left" title="Nudge Left">⬅️</button>
+                      <button type="button" class="nudge-btn nudge-center" id="photo-nudge-center"
+                        title="Center Image">🎯</button>
+                      <button type="button" class="nudge-btn" id="photo-nudge-right" title="Nudge Right">➡️</button>
+                    </div>
+                    <button type="button" class="nudge-btn" id="photo-nudge-down" title="Nudge Down">⬇️</button>
+                  </div>
+
+                  <!-- Dimension & File Size Output Readout -->
+                  <div class="output-preview-card">
+                    <div class="output-metric">
+                      <span>Dimensions:</span>
+                      <strong id="photo-output-dim">300 × 300 px</strong>
+                    </div>
+                    <div class="output-metric">
+                      <span>Est. File Size:</span>
+                      <strong id="photo-est-size">~0 KB</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right: Editing Tools Sidebar -->
+                <div class="editor-tabs-sidebar">
+
+                  <!-- 1. CROP & PERSPECTIVE CORRECTION -->
+                  <div class="editor-accordion-card open">
+                    <div class="editor-accordion-header" role="button" tabindex="0">
+                      <span><span class="editor-accordion-icon">📐</span> Crop & Perspective Rectification</span>
+                      <span class="editor-accordion-arrow">▼</span>
+                    </div>
+                    <div class="editor-accordion-body">
+                      <!-- Free Crop Tool -->
+                      <div class="control-box-title">
+                        <span>Free Crop Rectangle</span>
+                        <button type="button" id="photo-btn-toggle-crop" class="small-pill-btn">
+                          ✂️ Activate Crop Tool
+                        </button>
+                      </div>
+                      <div id="photo-crop-controls"
+                        style="display: none; background: #f8fafc; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                        <label
+                          style="font-size: 11px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 6px;">Aspect
+                          Ratio Presets:</label>
+                        <div class="chips-row">
+                          <button type="button" class="chip-pill active" data-photo-crop-ratio="1:1">1:1 Square
+                            (Passport)</button>
+                          <button type="button" class="chip-pill" data-photo-crop-ratio="3:4">3:4 Portrait</button>
+                          <button type="button" class="chip-pill" data-photo-crop-ratio="4:5">4:5 Standard</button>
+                          <button type="button" class="chip-pill" data-photo-crop-ratio="custom">Custom / Free</button>
+                        </div>
+                        <div style="display: flex; gap: 6px; margin-top: 10px;">
+                          <button type="button" id="photo-btn-apply-crop" class="btn btn-primary btn-sm"
+                            style="flex: 1;">
+                            ✓ Apply Crop
+                          </button>
+                          <button type="button" id="photo-btn-reset-crop" class="btn btn-secondary btn-sm"
+                            style="flex: 1;">
+                            Reset Box
+                          </button>
+                          <button type="button" id="photo-btn-cancel-crop" class="btn btn-secondary btn-sm">
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- Perspective Correction Tool (4 Corner Pins) -->
+                      <div class="control-box-title" style="margin-top: 8px;">
+                        <span>Perspective Correction (Corner Deskew)</span>
+                        <button type="button" id="photo-btn-toggle-perspective" class="small-pill-btn">
+                          📐 Activate 4-Corner Pins
+                        </button>
+                      </div>
+                      <div id="photo-perspective-controls"
+                        style="display: none; background: #f0fdf4; padding: 10px; border-radius: var(--radius-sm); border: 1px solid #bbf7d0;">
+                        <p style="font-size: 11px; color: #166534; margin-bottom: 8px;">
+                          🎯 <strong>Drag the 4 corner pins</strong> (TL, TR, BR, BL) to match the corners of your photo
+                          or document. A real-time magnifier loupe assists sub-pixel alignment!
+                        </p>
+                        <div style="display: flex; gap: 6px;">
+                          <button type="button" id="photo-btn-apply-perspective" class="btn btn-primary btn-sm"
+                            style="flex: 1;">
+                            ✓ Straighten & Warping
+                          </button>
+                          <button type="button" id="photo-btn-autofit-perspective" class="btn btn-secondary btn-sm">
+                            Auto-Fit
+                          </button>
+                          <button type="button" id="photo-btn-cancel-perspective" class="btn btn-secondary btn-sm">
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 2. ROTATE, STRAIGHTEN & CANVAS SIZE -->
+                  <div class="editor-accordion-card open">
+                    <div class="editor-accordion-header" role="button" tabindex="0">
+                      <span><span class="editor-accordion-icon">🔄</span> Rotate, Straighten & Size</span>
+                      <span class="editor-accordion-arrow">▼</span>
+                    </div>
+                    <div class="editor-accordion-body">
+                      <!-- Output Dimensions & Presets -->
+                      <div class="dim-inputs-row">
+                        <div class="dim-input-group">
+                          <label for="photo-target-width">Target Width (px)</label>
+                          <input type="number" id="photo-target-width" value="300" min="50" max="2000" />
+                        </div>
+                        <div class="dim-input-group">
+                          <label for="photo-target-height">Target Height (px)</label>
+                          <input type="number" id="photo-target-height" value="300" min="50" max="2000" />
+                        </div>
+                      </div>
+                      <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <label class="checkbox-pill-sm">
+                          <input type="checkbox" id="photo-lock-aspect" checked />
+                          <span>Maintain aspect ratio</span>
+                        </label>
+                        <div class="chips-row">
+                          <button type="button" class="chip-pill" data-photo-fit="fill"
+                            title="Fill (no empty borders)">Fill</button>
+                          <button type="button" class="chip-pill" data-photo-fit="contain"
+                            title="Fit whole image">Fit</button>
+                        </div>
+                      </div>
+                      <div class="preset-btn-grid">
+                        <button type="button" class="chip-pill" data-photo-preset="300x300">★ 300 × 300
+                          (Passport)</button>
+                        <button type="button" class="chip-pill" data-photo-preset="600x600">600 × 600 (US Visa)</button>
+                        <button type="button" class="chip-pill" data-photo-preset="413x531">413 × 531 (35×45mm)</button>
+                        <button type="button" class="chip-pill" id="btn-reset-photo-pos">Reset Pan/Zoom</button>
+                      </div>
+
+                      <!-- Quick Rotation & Flips -->
+                      <div class="action-btn-row">
+                        <button type="button" class="btn btn-secondary btn-sm" id="photo-rot-ccw"
+                          title="Rotate 90° CCW">↺ 90°</button>
+                        <button type="button" class="btn btn-secondary btn-sm" id="photo-rot-cw" title="Rotate 90° CW">↻
+                          90°</button>
+                        <button type="button" class="btn btn-secondary btn-sm" id="photo-rot-180"
+                          title="Rotate 180°">180°</button>
+                        <button type="button" class="btn btn-secondary btn-sm" id="photo-flip-h"
+                          title="Flip Horizontally">⇄ Flip H</button>
+                        <button type="button" class="btn btn-secondary btn-sm" id="photo-flip-v"
+                          title="Flip Vertically">⇅ Flip V</button>
+                      </div>
+
+                      <!-- Fine Straighten Tilt Slider & Auto-Straighten -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Fine Straighten / Deskew:</span>
+                          <div style="display: flex; gap: 6px; align-items: center;">
+                            <button type="button" id="photo-btn-auto-straighten" class="small-pill-btn"
+                              title="Automatically detect tilt and straighten photo">
+                              ✨ Auto-Straighten
+                            </button>
+                            <span class="slider-val-badge" id="photo-fine-rot-val">0.0°</span>
+                            <button type="button" class="btn-slider-reset" id="photo-rot-reset"
+                              title="Reset angle to 0°">↺</button>
+                          </div>
+                        </div>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                          <button type="button" class="angle-step-btn" id="photo-rot-step-ccw"
+                            title="Rotate -0.5°">−0.5°</button>
+                          <input type="range" id="photo-fine-rotation" min="-45" max="45" value="0" step="0.1"
+                            style="flex: 1;" />
+                          <button type="button" class="angle-step-btn" id="photo-rot-step-cw"
+                            title="Rotate +0.5°">+0.5°</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 3. COLOR & TONE CORRECTION (12 Adjustments + Auto-Enhance) -->
+                  <div class="editor-accordion-card open">
+                    <div class="editor-accordion-header" role="button" tabindex="0">
+                      <span><span class="editor-accordion-icon">🎨</span> Brightness, Contrast & Colors</span>
+                      <span class="editor-accordion-arrow">▼</span>
+                    </div>
+                    <div class="editor-accordion-body">
+                      <div style="display: flex; gap: 8px;">
+                        <button type="button" id="photo-btn-auto-enhance" class="btn btn-primary btn-sm"
+                          style="flex: 1;">
+                          ✨ One-Click Auto-Enhance
+                        </button>
+                        <button type="button" id="photo-btn-reset-adj" class="btn btn-secondary btn-sm">
+                          Reset All
+                        </button>
+                      </div>
+
+                      <!-- Brightness -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Brightness</span>
+                          <div style="display: flex; align-items: center; gap: 4px;">
+                            <span class="slider-val-badge" id="photo-bright-val">0</span>
+                            <button type="button" class="btn-slider-reset" id="photo-brightness-reset"
+                              title="Reset">↺</button>
+                          </div>
+                        </div>
+                        <input type="range" id="photo-brightness" min="-100" max="100" value="0" step="1" />
+                      </div>
+
+                      <!-- Contrast -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Contrast</span>
+                          <div style="display: flex; align-items: center; gap: 4px;">
+                            <span class="slider-val-badge" id="photo-contrast-val">0</span>
+                            <button type="button" class="btn-slider-reset" id="photo-contrast-reset"
+                              title="Reset">↺</button>
+                          </div>
+                        </div>
+                        <input type="range" id="photo-contrast" min="-100" max="100" value="0" step="1" />
+                      </div>
+
+                      <!-- Saturation -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Saturation</span>
+                          <div style="display: flex; align-items: center; gap: 4px;">
+                            <span class="slider-val-badge" id="photo-sat-val">100%</span>
+                            <button type="button" class="btn-slider-reset" id="photo-saturation-reset"
+                              title="Reset">↺</button>
+                          </div>
+                        </div>
+                        <input type="range" id="photo-saturation" min="0" max="200" value="100" step="1" />
+                      </div>
+
+                      <!-- Exposure -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Exposure</span>
+                          <div style="display: flex; align-items: center; gap: 4px;">
+                            <span class="slider-val-badge" id="photo-exposure-val">0</span>
+                            <button type="button" class="btn-slider-reset" id="photo-exposure-reset"
+                              title="Reset">↺</button>
+                          </div>
+                        </div>
+                        <input type="range" id="photo-exposure" min="-100" max="100" value="0" step="1" />
+                      </div>
+
+                      <!-- Highlights -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Highlights</span>
+                          <div style="display: flex; align-items: center; gap: 4px;">
+                            <span class="slider-val-badge" id="photo-highlights-val">0</span>
+                            <button type="button" class="btn-slider-reset" id="photo-highlights-reset"
+                              title="Reset">↺</button>
+                          </div>
+                        </div>
+                        <input type="range" id="photo-highlights" min="-100" max="100" value="0" step="1" />
+                      </div>
+
+                      <!-- Shadows -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Shadows</span>
+                          <div style="display: flex; align-items: center; gap: 4px;">
+                            <span class="slider-val-badge" id="photo-shadows-val">0</span>
+                            <button type="button" class="btn-slider-reset" id="photo-shadows-reset"
+                              title="Reset">↺</button>
+                          </div>
+                        </div>
+                        <input type="range" id="photo-shadows" min="-100" max="100" value="0" step="1" />
+                      </div>
+
+                      <!-- Temperature (Warm / Cool) -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Temperature (Cool ↔ Warm)</span>
+                          <div style="display: flex; align-items: center; gap: 4px;">
+                            <span class="slider-val-badge" id="photo-temp-val">0</span>
+                            <button type="button" class="btn-slider-reset" id="photo-temperature-reset"
+                              title="Reset">↺</button>
+                          </div>
+                        </div>
+                        <input type="range" id="photo-temperature" min="-100" max="100" value="0" step="1" />
+                      </div>
+
+                      <!-- Tint -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Tint (Green ↔ Magenta)</span>
+                          <div style="display: flex; align-items: center; gap: 4px;">
+                            <span class="slider-val-badge" id="photo-tint-val">0</span>
+                            <button type="button" class="btn-slider-reset" id="photo-tint-reset"
+                              title="Reset">↺</button>
+                          </div>
+                        </div>
+                        <input type="range" id="photo-tint" min="-100" max="100" value="0" step="1" />
+                      </div>
+
+                      <!-- Gamma -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Gamma</span>
+                          <div style="display: flex; align-items: center; gap: 4px;">
+                            <span class="slider-val-badge" id="photo-gamma-val">1.0</span>
+                            <button type="button" class="btn-slider-reset" id="photo-gamma-reset"
+                              title="Reset">↺</button>
+                          </div>
+                        </div>
+                        <input type="range" id="photo-gamma" min="0.2" max="2.5" value="1.0" step="0.05" />
+                      </div>
+
+                      <!-- Sharpness -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Sharpness</span>
+                          <div style="display: flex; align-items: center; gap: 4px;">
+                            <span class="slider-val-badge" id="photo-sharp-val">0%</span>
+                            <button type="button" class="btn-slider-reset" id="photo-sharpness-reset"
+                              title="Reset">↺</button>
+                          </div>
+                        </div>
+                        <input type="range" id="photo-sharpness" min="0" max="100" value="0" step="1" />
+                      </div>
+
+                      <!-- Blur -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Blur</span>
+                          <div style="display: flex; align-items: center; gap: 4px;">
+                            <span class="slider-val-badge" id="photo-blur-val">0px</span>
+                            <button type="button" class="btn-slider-reset" id="photo-blur-reset"
+                              title="Reset">↺</button>
+                          </div>
+                        </div>
+                        <input type="range" id="photo-blur" min="0" max="20" value="0" step="1" />
+                      </div>
+
+                      <!-- Grayscale -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Grayscale</span>
+                          <div style="display: flex; align-items: center; gap: 4px;">
+                            <span class="slider-val-badge" id="photo-gray-val">0%</span>
+                            <button type="button" class="btn-slider-reset" id="photo-grayscale-reset"
+                              title="Reset">↺</button>
+                          </div>
+                        </div>
+                        <input type="range" id="photo-grayscale" min="0" max="100" value="0" step="1" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 4. BACKGROUND REMOVAL & REPLACEMENT -->
+                  <div class="editor-accordion-card open">
+                    <div class="editor-accordion-header" role="button" tabindex="0">
+                      <span><span class="editor-accordion-icon">✂️</span> Background Removal & Replacement</span>
+                      <span class="editor-accordion-arrow">▼</span>
+                    </div>
+                    <div class="editor-accordion-body">
+                      <!-- AI Auto Remove Button -->
+                      <button type="button" id="photo-btn-ai-remove-bg" class="btn btn-primary btn-large">
+                        ✨ AI Remove Background (Instant)
+                      </button>
+
+                      <!-- Background Color Replacement -->
+                      <div class="control-box-title">
+                        <span>Background Color</span>
+                      </div>
+                      <div class="bg-color-row">
+                        <input type="color" id="photo-bg-color" value="#ffffff" title="Custom color picker" />
+                        <div class="color-presets">
+                          <button type="button" class="color-chip-btn photo-color-chip active"
+                            data-color="#ffffff">White</button>
+                          <button type="button" class="color-chip-btn photo-color-chip" data-color="#d8ecf8"
+                            style="background: #d8ecf8; color: #0f4c81;">BD Govt Light Blue</button>
+                          <button type="button" class="color-chip-btn photo-color-chip" data-color="#1e40af"
+                            style="background: #1e40af; color: #ffffff;">Blue</button>
+                          <button type="button" class="color-chip-btn photo-color-chip" data-color="#b91c1c"
+                            style="background: #b91c1c; color: #ffffff;">Red</button>
+                          <button type="button" class="color-chip-btn photo-color-chip" data-color="#d8dce2"
+                            style="background: #d8dce2; color: #1e293b;">Light Gray</button>
+                          <button type="button" class="color-chip-btn photo-color-chip"
+                            data-color="transparent">Transparent</button>
+                        </div>
+                      </div>
+
+                      <!-- Custom Background Image Upload -->
+                      <div style="display: flex; gap: 8px; align-items: center; margin-top: 4px;">
+                        <input type="file" id="photo-bg-image-input" accept="image/*" style="display: none;" />
+                        <button type="button" id="photo-btn-upload-bg-image" class="btn btn-secondary btn-sm"
+                          style="flex: 1;">
+                          🖼️ Upload Custom BG Image
+                        </button>
+                      </div>
+
+                      <!-- Key Out Light Wall/Paper -->
+                      <div class="chroma-box">
+                        <label class="checkbox-pill-sm">
+                          <input type="checkbox" id="photo-key-white" />
+                          <span>Key out plain wall/paper background</span>
+                        </label>
+                      </div>
+
+                      <!-- Edge Refinements -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Background Tolerance</span>
+                          <span class="slider-val-badge" id="photo-bg-tol-val">25</span>
+                        </div>
+                        <input type="range" id="photo-bg-tolerance" min="5" max="80" value="25" />
+                      </div>
+
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Feathering (Soft Hair & Shoulders)</span>
+                          <span class="slider-val-badge" id="photo-bg-feather-val">3px</span>
+                        </div>
+                        <input type="range" id="photo-bg-feather" min="0" max="20" value="3" />
+                      </div>
+
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Edge Smoothing</span>
+                          <span class="slider-val-badge" id="photo-bg-smooth-val">2px</span>
+                        </div>
+                        <input type="range" id="photo-bg-smoothing" min="0" max="10" value="2" />
+                      </div>
+
+                      <!-- Manual Touch-up Brushes -->
+                      <div class="control-box-title" style="margin-top: 6px;">
+                        <span>Manual Touch-Up Brushes</span>
+                        <button type="button" id="photo-btn-reset-mask" class="small-pill-btn">Reset Mask</button>
+                      </div>
+                      <div class="chips-row">
+                        <button type="button" id="photo-btn-brush-erase" class="chip-pill"
+                          title="Erase background around hair/clothes">
+                          🧹 Erase BG Brush
+                        </button>
+                        <button type="button" id="photo-btn-brush-restore" class="chip-pill"
+                          title="Restore parts of face or hair">
+                          🖌️ Restore FG Brush
+                        </button>
+                        <button type="button" id="photo-btn-brush-off" class="chip-pill active">
+                          Off
+                        </button>
+                      </div>
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Brush Diameter</span>
+                          <span class="slider-val-badge" id="photo-brush-size-val">25px</span>
+                        </div>
+                        <input type="range" id="photo-brush-size" min="5" max="80" value="25" />
+                      </div>
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Brush Softness / Feather</span>
+                          <span class="slider-val-badge" id="photo-brush-feather-val">50%</span>
+                        </div>
+                        <input type="range" id="photo-brush-feather" min="0" max="100" value="50" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 5. FACE POSITION & PASSPORT GUIDELINES -->
+                  <div class="editor-accordion-card open">
+                    <div class="editor-accordion-header" role="button" tabindex="0">
+                      <span><span class="editor-accordion-icon">👤</span> Face Position & Passport Guidelines</span>
+                      <span class="editor-accordion-arrow">▼</span>
+                    </div>
+                    <div class="editor-accordion-body">
+                      <div class="tool-hint-box">
+                        <strong>Official Requirements:</strong> Passport and job applications require a straight-facing
+                        portrait, eyes level, with head occupying 60–70% of the frame. Background should be plain light
+                        blue or white.
+                      </div>
+
+                      <label class="checkbox-pill-sm">
+                        <input type="checkbox" id="photo-check-face-guide" />
+                        <span><strong>Show Passport Face Guidelines (ICAO / BD Standard)</strong></span>
+                      </label>
+
+                      <label class="checkbox-pill-sm">
+                        <input type="checkbox" id="photo-check-grid-guide" />
+                        <span>Show Rule-of-Thirds Grid</span>
+                      </label>
+
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Distance from Top (Crown Margin)</span>
+                        </div>
+                        <input type="range" id="photo-guide-head-margin" min="5" max="25" value="12" />
+                      </div>
+
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Eye Level Height</span>
+                        </div>
+                        <input type="range" id="photo-guide-eye-level" min="30" max="60" value="45" />
+                      </div>
+
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Chin Level Height</span>
+                        </div>
+                        <input type="range" id="photo-guide-chin-level" min="65" max="95" value="80" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 6. EXPORT & DOWNLOAD -->
+                  <div class="editor-accordion-card open">
+                    <div class="editor-accordion-header" role="button" tabindex="0">
+                      <span><span class="editor-accordion-icon">💾</span> Export & Save</span>
+                      <span class="editor-accordion-arrow">▼</span>
+                    </div>
+                    <div class="editor-accordion-body">
+                      <div class="export-options-row">
+                        <div class="form-group" style="flex: 1;">
+                          <label for="photo-export-format">File Format</label>
+                          <select id="photo-export-format">
+                            <option value="image/jpeg" selected>JPEG (.jpg) - Standard Requirement</option>
+                            <option value="image/png">PNG (.png) - Supports Transparency</option>
+                            <option value="image/webp">WebP (.webp)</option>
+                          </select>
+                        </div>
+                        <div class="form-group" id="photo-grp-quality" style="flex: 1;">
+                          <label for="photo-export-quality">Quality: <span id="photo-export-qual-val">90%</span></label>
+                          <input type="range" id="photo-export-quality" min="60" max="100" value="90" step="1" />
+                        </div>
+                      </div>
+
+                      <div class="export-buttons-row">
+                        <button type="button" id="photo-btn-download" class="btn btn-primary btn-large"
+                          style="flex: 1;">
+                          <span>📥</span> Download Photo (300×300)
+                        </button>
+                        <button type="button" id="photo-btn-save-storage" class="btn btn-secondary btn-large"
+                          style="flex: 1;">
+                          <span>💾</span> Save to Candidate Profile
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ---------------------------------------- -->
+          <!-- SUBTAB 2: SIGNATURE EDITOR (300 x 80)    -->
+          <!-- ---------------------------------------- -->
+          <div id="subtab-signature" class="subtab-pane">
+            <div class="section-card">
+              <div class="section-header flex-header">
+                <div>
+                  <h2>Signature Editor / স্বাক্ষর প্রস্তুতকারক</h2>
+                  <p>Prepare official candidate signature: Exactly <strong>300 × 80 pixels</strong>, max 60 KB, with
+                    crisp ink cleanup.</p>
+                </div>
+                <div class="dimension-standard-badge">
+                  <span>Target: <strong>300 × 80 px</strong> (Max 60 KB)</span>
+                </div>
+              </div>
+
+              <!-- Top Action Bar -->
+              <div class="editor-top-toolbar">
+                <div class="editor-toolbar-group">
+                  <input type="file" id="sig-file-input" accept="image/png, image/jpeg, image/jpg, image/webp"
+                    style="display: none;" />
+                  <button type="button" id="btn-browse-sig" class="btn-editor-tool btn-primary-action"
+                    title="Upload signature image">
+                    <span>📁</span> Choose Signature
+                  </button>
+                  <button type="button" id="sig-btn-replace" class="btn-editor-tool" title="Replace signature image">
+                    <span>🔄</span> Replace
+                  </button>
+                  <button type="button" id="sig-btn-remove" class="btn-editor-tool btn-danger-action"
+                    title="Remove signature">
+                    <span>🗑️</span> Remove
+                  </button>
+                  <span id="sig-file-info" class="file-info-badge" style="display: none;"></span>
+                </div>
+                <div class="editor-toolbar-group">
+                  <button type="button" id="sig-btn-undo" class="btn-editor-tool" title="Undo change (Ctrl+Z)" disabled>
+                    <span>↩️</span> Undo
+                  </button>
+                  <button type="button" id="sig-btn-redo" class="btn-editor-tool" title="Redo change (Ctrl+Y)" disabled>
+                    <span>↪️</span> Redo
+                  </button>
+                  <button type="button" id="sig-btn-compare" class="btn-editor-tool"
+                    title="Press and hold to compare with unedited original">
+                    <span>👁️</span> Hold to Compare
+                  </button>
+                  <button type="button" id="sig-btn-reset-all" class="btn-editor-tool"
+                    title="Discard all edits and revert to original">
+                    <span>↺</span> Reset All
+                  </button>
+                </div>
+              </div>
+
+              <!-- Upload Drag & Drop Zone -->
+              <div class="media-upload-zone" id="sig-drop-zone">
+                <span class="upload-hint">Upload a scan or clear phone photograph of your paper signature (JPG, PNG,
+                  WebP)</span>
+              </div>
+
+              <!-- Editor Workspace Grid -->
+              <div class="media-editor-grid">
+                <!-- Left: Signature Canvas Stage -->
+                <div class="canvas-stage-wrapper">
+                  <div class="canvas-container checkerboard" id="sig-canvas-container"
+                    style="min-height: 140px; padding: 24px; display: flex; align-items: center; justify-content: center;">
+                    <canvas id="sig-canvas" width="300" height="80"></canvas>
+                    <canvas id="sig-overlay-canvas" class="editor-overlay-canvas" width="300" height="80"></canvas>
+                  </div>
+
+                  <!-- Floating Canvas Zoom & Pan Bar -->
+                  <div class="canvas-floating-toolbar">
+                    <span>Zoom: <strong id="sig-zoom-val">100%</strong></span>
+                    <button type="button" class="step-btn" id="sig-zoom-out">−</button>
+                    <input type="range" id="sig-zoom" min="20" max="400" value="100" step="1" />
+                    <button type="button" class="step-btn" id="sig-zoom-in">+</button>
+                    <button type="button" class="chip-pill" id="sig-zoom-reset">Fit</button>
+                  </div>
+
+                  <div class="canvas-help-text">
+                    <span>🖱️ Drag to pan signature • Wheel to zoom • Perspective crop to deskew paper angle</span>
+                  </div>
+
+                  <!-- Nudge Controls -->
+                  <div class="nudge-pad">
+                    <button type="button" class="nudge-btn" id="sig-nudge-up">⬆️</button>
+                    <div class="nudge-row">
+                      <button type="button" class="nudge-btn" id="sig-nudge-left">⬅️</button>
+                      <button type="button" class="nudge-btn nudge-center" id="sig-nudge-center">🎯</button>
+                      <button type="button" class="nudge-btn" id="sig-nudge-right">➡️</button>
+                    </div>
+                    <button type="button" class="nudge-btn" id="sig-nudge-down">⬇️</button>
+                  </div>
+
+                  <div class="output-preview-card">
+                    <div class="output-metric">
+                      <span>Dimensions:</span>
+                      <strong id="sig-output-dim">300 × 80 px</strong>
+                    </div>
+                    <div class="output-metric">
+                      <span>Est. File Size:</span>
+                      <strong id="sig-est-size">~0 KB</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right: Signature Controls Sidebar -->
+                <div class="editor-tabs-sidebar">
+
+                  <!-- 1. CROP & PERSPECTIVE (Crucial for mobile phone photos of signatures) -->
+                  <div class="editor-accordion-card open">
+                    <div class="editor-accordion-header" role="button" tabindex="0">
+                      <span><span class="editor-accordion-icon">📐</span> Crop & Perspective Deskew</span>
+                      <span class="editor-accordion-arrow">▼</span>
+                    </div>
+                    <div class="editor-accordion-body">
+                      <!-- Free Crop -->
+                      <div class="control-box-title">
+                        <span>Signature Crop Rectangle</span>
+                        <button type="button" id="sig-btn-toggle-crop" class="small-pill-btn">
+                          ✂️ Activate Crop
+                        </button>
+                      </div>
+                      <div id="sig-crop-controls"
+                        style="display: none; background: #f8fafc; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                        <label
+                          style="font-size: 11px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 6px;">Aspect
+                          Ratio:</label>
+                        <div class="chips-row">
+                          <button type="button" class="chip-pill active" data-sig-crop-ratio="300:80">★ 300:80
+                            (Signature)</button>
+                          <button type="button" class="chip-pill" data-sig-crop-ratio="1:1">1:1 Square</button>
+                          <button type="button" class="chip-pill" data-sig-crop-ratio="custom">Custom</button>
+                        </div>
+                        <div style="display: flex; gap: 6px; margin-top: 10px;">
+                          <button type="button" id="sig-btn-apply-crop" class="btn btn-primary btn-sm"
+                            style="flex: 1;">✓ Apply Crop</button>
+                          <button type="button" id="sig-btn-reset-crop" class="btn btn-secondary btn-sm"
+                            style="flex: 1;">Reset</button>
+                          <button type="button" id="sig-btn-cancel-crop"
+                            class="btn btn-secondary btn-sm">Cancel</button>
+                        </div>
+                      </div>
+
+                      <!-- Perspective Deskew -->
+                      <div class="control-box-title" style="margin-top: 8px;">
+                        <span>Perspective Correction (Deskew Phone Photo)</span>
+                        <button type="button" id="sig-btn-toggle-perspective" class="small-pill-btn">
+                          📐 4-Corner Pins
+                        </button>
+                      </div>
+                      <div id="sig-perspective-controls"
+                        style="display: none; background: #f0fdf4; padding: 10px; border-radius: var(--radius-sm); border: 1px solid #bbf7d0;">
+                        <p style="font-size: 11px; color: #166534; margin-bottom: 8px;">
+                          Straightens tilted photos of paper or receipts taken with your phone. Drag the 4 corner pins
+                          around the signature!
+                        </p>
+                        <div style="display: flex; gap: 6px;">
+                          <button type="button" id="sig-btn-apply-perspective" class="btn btn-primary btn-sm"
+                            style="flex: 1;">✓ Straighten</button>
+                          <button type="button" id="sig-btn-autofit-perspective"
+                            class="btn btn-secondary btn-sm">Auto-Fit</button>
+                          <button type="button" id="sig-btn-cancel-perspective"
+                            class="btn btn-secondary btn-sm">Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 2. ROTATE & SIZING -->
+                  <div class="editor-accordion-card open">
+                    <div class="editor-accordion-header" role="button" tabindex="0">
+                      <span><span class="editor-accordion-icon">🔄</span> Rotate, Straighten & Size</span>
+                      <span class="editor-accordion-arrow">▼</span>
+                    </div>
+                    <div class="editor-accordion-body">
+                      <div class="dim-inputs-row">
+                        <div class="dim-input-group">
+                          <label for="sig-target-width">Target Width</label>
+                          <input type="number" id="sig-target-width" value="300" min="50" max="2000" />
+                        </div>
+                        <div class="dim-input-group">
+                          <label for="sig-target-height">Target Height</label>
+                          <input type="number" id="sig-target-height" value="80" min="20" max="1000" />
+                        </div>
+                      </div>
+                      <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <label class="checkbox-pill-sm">
+                          <input type="checkbox" id="sig-lock-aspect" checked />
+                          <span>Lock aspect ratio</span>
+                        </label>
+                        <div class="chips-row">
+                          <button type="button" class="chip-pill" data-sig-fit="contain">Fit</button>
+                          <button type="button" class="chip-pill" data-sig-fit="fill">Fill</button>
+                        </div>
+                      </div>
+                      <div class="chips-row">
+                        <button type="button" class="chip-pill" data-sig-preset="300x80">★ Standard 300 × 80 px</button>
+                        <button type="button" class="chip-pill" id="btn-reset-sig-pos">Reset Pan/Zoom</button>
+                      </div>
+
+                      <div class="action-btn-row">
+                        <button type="button" class="btn btn-secondary btn-sm" id="sig-rot-ccw">↺ 90°</button>
+                        <button type="button" class="btn btn-secondary btn-sm" id="sig-rot-cw">↻ 90°</button>
+                        <button type="button" class="btn btn-secondary btn-sm" id="sig-rot-180">180°</button>
+                        <button type="button" class="btn btn-secondary btn-sm" id="sig-flip-h">⇄ Flip H</button>
+                        <button type="button" class="btn btn-secondary btn-sm" id="sig-flip-v">⇅ Flip V</button>
+                      </div>
+
+                      <!-- Fine Straighten Tilt Slider & Auto-Straighten -->
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Fine Straighten / Deskew:</span>
+                          <div style="display: flex; gap: 6px; align-items: center;">
+                            <button type="button" id="sig-btn-auto-straighten" class="small-pill-btn"
+                              title="Automatically detect tilt and straighten signature">
+                              ✨ Auto-Straighten
+                            </button>
+                            <span class="slider-val-badge" id="sig-fine-rot-val">0.0°</span>
+                            <button type="button" class="btn-slider-reset" id="sig-rot-reset"
+                              title="Reset angle to 0°">↺</button>
+                          </div>
+                        </div>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                          <button type="button" class="angle-step-btn" id="sig-rot-step-ccw"
+                            title="Rotate -0.5°">−0.5°</button>
+                          <input type="range" id="sig-fine-rotation" min="-45" max="45" value="0" step="0.1"
+                            style="flex: 1;" />
+                          <button type="button" class="angle-step-btn" id="sig-rot-step-cw"
+                            title="Rotate +0.5°">+0.5°</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 3. CRISP INK & PAPER CONTRAST CLEANUP -->
+                  <div class="editor-accordion-card open">
+                    <div class="editor-accordion-header" role="button" tabindex="0">
+                      <span><span class="editor-accordion-icon">🖋️</span> Crisp Ink & Paper Cleanup</span>
+                      <span class="editor-accordion-arrow">▼</span>
+                    </div>
+                    <div class="editor-accordion-body">
+                      <!-- Paper Filter Toggle -->
+                      <div class="chroma-box">
+                        <label class="checkbox-pill-sm">
+                          <input type="checkbox" id="sig-clean-paper" checked />
+                          <span><strong>Crisp B&W Paper Filter (Turn paper white & ink dark)</strong></span>
+                        </label>
+                      </div>
+
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Paper Threshold (Background Whiteness)</span>
+                          <span class="slider-val-badge" id="sig-thresh-val">170</span>
+                        </div>
+                        <input type="range" id="sig-paper-threshold" min="80" max="240" value="170" />
+                      </div>
+
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Ink Density / Contrast Boost</span>
+                          <span class="slider-val-badge" id="sig-ink-boost-val">120%</span>
+                        </div>
+                        <input type="range" id="sig-ink-boost" min="50" max="250" value="120" />
+                      </div>
+
+                      <label class="checkbox-pill-sm">
+                        <input type="checkbox" id="sig-invert-ink" />
+                        <span>Invert ink color (White/Light chalk signature to dark)</span>
+                      </label>
+
+                      <!-- Standard Adjustments -->
+                      <div style="display: flex; gap: 8px; margin-top: 6px;">
+                        <button type="button" id="sig-btn-auto-enhance" class="btn btn-primary btn-sm"
+                          style="flex: 1;">Auto-Enhance</button>
+                        <button type="button" id="sig-btn-reset-adj" class="btn btn-secondary btn-sm">Reset</button>
+                      </div>
+
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Brightness</span>
+                          <span class="slider-val-badge" id="sig-bright-val">0</span>
+                        </div>
+                        <input type="range" id="sig-brightness" min="-100" max="100" value="0" />
+                      </div>
+
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Contrast</span>
+                          <span class="slider-val-badge" id="sig-contrast-val">0</span>
+                        </div>
+                        <input type="range" id="sig-contrast" min="-100" max="100" value="0" />
+                      </div>
+
+                      <div class="slider-group">
+                        <div class="slider-header">
+                          <span class="slider-title">Sharpness</span>
+                          <span class="slider-val-badge" id="sig-sharp-val">0%</span>
+                        </div>
+                        <input type="range" id="sig-sharpness" min="0" max="100" value="0" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 4. BACKGROUND COLOR -->
+                  <div class="editor-accordion-card open">
+                    <div class="editor-accordion-header" role="button" tabindex="0">
+                      <span><span class="editor-accordion-icon">🎨</span> Background Color</span>
+                      <span class="editor-accordion-arrow">▼</span>
+                    </div>
+                    <div class="editor-accordion-body">
+                      <div class="bg-color-row">
+                        <input type="color" id="sig-bg-color" value="#ffffff" />
+                        <div class="color-presets">
+                          <button type="button" class="color-chip-btn sig-color-chip active"
+                            data-color="#ffffff">White</button>
+                          <button type="button" class="color-chip-btn sig-color-chip"
+                            data-color="transparent">Transparent (PNG)</button>
+                          <button type="button" class="color-chip-btn sig-color-chip" data-color="#d8dce2"
+                            style="background: #d8dce2; color: #1e293b;">Light Gray</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 5. EXPORT SIGNATURE -->
+                  <div class="editor-accordion-card open">
+                    <div class="editor-accordion-header" role="button" tabindex="0">
+                      <span><span class="editor-accordion-icon">💾</span> Export & Save Signature</span>
+                      <span class="editor-accordion-arrow">▼</span>
+                    </div>
+                    <div class="editor-accordion-body">
+                      <div class="export-options-row">
+                        <div class="form-group" style="flex: 1;">
+                          <label for="sig-export-format">Format</label>
+                          <select id="sig-export-format">
+                            <option value="image/jpeg" selected>JPEG (.jpg)</option>
+                          </select>
+                        </div>
+                        <div class="form-group" id="sig-grp-quality" style="flex: 1; display: flex;">
+                          <label for="sig-export-quality">Quality: <span id="sig-export-qual-val">90%</span></label>
+                          <input type="range" id="sig-export-quality" min="60" max="100" value="90" step="1" />
+                        </div>
+                      </div>
+
+                      <div class="export-buttons-row">
+                        <button type="button" id="sig-btn-download" class="btn btn-primary btn-large" style="flex: 1;">
+                          <span>📥</span> Download Signature (300×80)
+                        </button>
+                        <button type="button" id="sig-btn-save-storage" class="btn btn-secondary btn-large"
+                          style="flex: 1;">
+                          <span>💾</span> Save to Candidate Profile
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ---------------------------------------- -->
+          <!-- SUBTAB 3: SAVED MEDIA GALLERY            -->
+          <!-- ---------------------------------------- -->
+          <div id="subtab-saved-media" class="subtab-pane">
+            <div class="section-card">
+              <div class="section-header">
+                <h2>Saved Candidate Media / সংরক্ষিত ছবি ও স্বাক্ষর</h2>
+                <p>Images currently stored in your browser's private local storage. They persist across sessions.</p>
+              </div>
+
+              <div class="saved-gallery-grid">
+                <!-- Saved Photo Card -->
+                <div class="saved-media-card" id="saved-photo-card">
+                  <div class="saved-card-header">
+                    <strong>Passport Photo (300 × 300)</strong>
+                    <span class="status-pill" id="saved-photo-status">Not Saved</span>
+                  </div>
+                  <div class="saved-thumbnail-box checkerboard">
+                    <img id="saved-photo-img" src="" alt="No saved photo" style="display: none;" />
+                    <div id="saved-photo-empty" class="empty-media-placeholder">
+                      <span>📷</span>
+                      <small>No photo currently saved in storage</small>
+                    </div>
+                  </div>
+                  <div class="saved-meta-row" id="saved-photo-meta" style="display: none;">
+                    <span id="saved-photo-dim">300 × 300 px</span>
+                    <span id="saved-photo-size">0 KB</span>
+                    <span id="saved-photo-time"></span>
+                  </div>
+                  <div class="saved-card-actions">
+                    <button type="button" id="btn-load-saved-photo" class="btn btn-secondary btn-sm" disabled>
+                      ✏️ Edit in Photo Editor
+                    </button>
+                    <button type="button" id="btn-download-saved-photo" class="btn btn-primary btn-sm" disabled>
+                      📥 Download
+                    </button>
+                    <button type="button" id="btn-delete-saved-photo" class="btn btn-danger btn-sm" disabled>
+                      🗑️ Remove
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Saved Signature Card -->
+                <div class="saved-media-card" id="saved-sig-card">
+                  <div class="saved-card-header">
+                    <strong>Signature (300 × 80 px)</strong>
+                    <span class="status-pill" id="saved-sig-status">Not Saved</span>
+                  </div>
+                  <div class="saved-thumbnail-box checkerboard">
+                    <img id="saved-sig-img" src="" alt="No saved signature" style="display: none;" />
+                    <div id="saved-sig-empty" class="empty-media-placeholder">
+                      <span>✍️</span>
+                      <small>No signature currently saved in storage</small>
+                    </div>
+                  </div>
+                  <div class="saved-meta-row" id="saved-sig-meta" style="display: none;">
+                    <span id="saved-sig-dim">300 × 80 px</span>
+                    <span id="saved-sig-size">0 KB</span>
+                    <span id="saved-sig-time"></span>
+                  </div>
+                  <div class="saved-card-actions">
+                    <button type="button" id="btn-load-saved-sig" class="btn btn-secondary btn-sm" disabled>
+                      ✏️ Edit in Signature Editor
+                    </button>
+                    <button type="button" id="btn-download-saved-sig" class="btn btn-primary btn-sm" disabled>
+                      📥 Download
+                    </button>
+                    <button type="button" id="btn-delete-saved-sig" class="btn btn-danger btn-sm" disabled>
+                      🗑️ Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 5: SITE SETTINGS                      -->
+        <!-- ========================================== -->
+        <section id="tab-settings" class="tab-pane" role="tabpanel">
+          <div class="section-card">
+            <div class="section-header">
+              <h2>Autofill Engine Configuration</h2>
+              <p>Fine-tune how the extension interacts with Teletalk web forms.</p>
+            </div>
+
+            <div class="settings-list">
+              <div class="setting-item">
+                <div class="setting-text">
+                  <strong>Enable Autofill Engine</strong>
+                  <span>Master switch to activate or pause autofill capabilities across all circulars.</span>
+                </div>
+                <label class="toggle-control">
+                  <input type="checkbox" id="setting-enableAutofill" checked />
+                  <span class="toggle-track"></span>
+                </label>
+              </div>
+
+              <div class="setting-item">
+                <div class="setting-text">
+                  <strong>Overwrite Existing Values</strong>
+                  <span>When unchecked (default), the extension leaves pre-filled fields untouched to prevent accidental
+                    overwrites.</span>
+                </div>
+                <label class="toggle-control">
+                  <input type="checkbox" id="setting-overwriteExisting" />
+                  <span class="toggle-track"></span>
+                </label>
+              </div>
+
+              <div class="setting-item">
+                <div class="setting-text">
+                  <strong>Show In-Page Floating Quick Pill</strong>
+                  <span>Displays a discreet green "⚡ Autofill BD Job" button directly on Teletalk application
+                    pages.</span>
+                </div>
+                <label class="toggle-control">
+                  <input type="checkbox" id="setting-showFloatingPill" checked />
+                  <span class="toggle-track"></span>
+                </label>
+              </div>
+
+              <div class="setting-item">
+                <div class="setting-text">
+                  <strong>Dependent Dropdown Ajax Delay</strong>
+                  <span>Wait duration for dependent dropdowns (like Upazila after selecting District) to fetch
+                    options.</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <input type="number" id="setting-delayMs" min="200" max="2500" step="50" style="width: 90px;"
+                    value="450" />
+                  <span style="font-size: 12px; color: #666;">ms</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-card">
+            <div class="section-header">
+              <h2>Supported Teletalk Circular Subdomains</h2>
+              <p>The extension dynamically adapts to all Teletalk recruitment portals.</p>
+            </div>
+            <div class="subdomain-badges">
+              <span class="subdomain-tag">*.teletalk.com.bd (Generic)</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 6: BACKUP & SECURITY                  -->
+        <!-- ========================================== -->
+        <section id="tab-backup" class="tab-pane" role="tabpanel">
+          <!-- Security Notice -->
+          <div class="notice-card">
+            <div class="notice-icon">🛡️</div>
+            <div class="notice-body">
+              <strong>100% Local & Private by Design</strong>
+              <p>Your profile data is stored exclusively in your browser's <code>chrome.storage.local</code>. No data is
+                ever transmitted to any external server or cloud service. The extension does not track you, does not
+                store passwords, and never submits application forms automatically.</p>
+            </div>
+          </div>
+
+          <!-- Encrypted Backup (AES-GCM) Card -->
+          <div class="section-card">
+            <div class="section-header">
+              <h2>Encrypted Profile Vault (Web Crypto AES-GCM)</h2>
+              <p>Export your candidate profile encrypted with a strong personal passphrase (PBKDF2 + AES-256-GCM).</p>
+            </div>
+
+            <div class="vault-grid">
+              <div class="form-group col-12">
+                <label for="export-passphrase">Passphrase (ন্যূনতম ৬ অক্ষর)</label>
+                <input type="password" id="export-passphrase"
+                  placeholder="Enter a secure password to encrypt/decrypt backup" />
+              </div>
+              <div class="col-12" style="display: flex; gap: 10px; margin-top: 8px;">
+                <button type="button" id="btn-export-encrypted" class="btn btn-primary">
+                  <span>🔒</span> Export Encrypted Backup (.json)
+                </button>
+                <button type="button" id="btn-import-encrypted-trigger" class="btn btn-secondary">
+                  <span>🔓</span> Import Encrypted Backup
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Plain Backup Card -->
+          <div class="section-card">
+            <div class="section-header">
+              <h2>Plain JSON Backup</h2>
+              <p>Export standard human-readable JSON file for manual inspection or backup.</p>
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+              <button type="button" id="btn-export-plain" class="btn btn-secondary">
+                <span>💾</span> Export Plain JSON
+              </button>
+              <button type="button" id="btn-import-plain-trigger" class="btn btn-secondary">
+                <span>📂</span> Import Plain JSON
+              </button>
+            </div>
+          </div>
+
+          <input type="file" id="options-file-input" accept=".json" style="display: none;" />
+
+          <!-- Danger Zone -->
+          <div class="section-card danger-card">
+            <div class="section-header">
+              <h2 style="color: #dc2626;">Danger Zone / ডেটা মুছুন</h2>
+              <p>Completely erase all saved personal and educational information from local browser storage.</p>
+            </div>
+            <button type="button" id="btn-erase-all" class="btn btn-danger">
+              <span>🗑️</span> Erase Stored Profile Data
+            </button>
+          </div>
+        </section>
+
+      </form>
+    </main>
+
+    <!-- Bottom Save Footer Bar -->
+    <footer class="bottom-footer">
+      <div class="footer-left">
+        <span id="footer-status-text">All changes will take effect on next autofill.</span>
+      </div>
+      <div class="footer-right">
+        <button id="btn-save-bottom" class="btn btn-primary btn-large">
+          <span>💾</span> Save All Changes
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <script src="bangladesh-data.js"></script>
+  <script src="storage.js"></script>
+  <script src="validation.js"></script>
+  <script src="passport-photo-editor.js"></script>
+  <script src="options.js"></script>
+</body>
+
+</html>
