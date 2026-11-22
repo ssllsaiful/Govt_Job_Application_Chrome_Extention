@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payments & Gateways - Teletalk Job SaaS</title>
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-icon">BD</div>
+      <div class="logo-text">
+        Teletalk Job SaaS
+        <span>Admin Panel v1.0</span>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="../dashboard/" class="nav-link">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        Dashboard
+      </a>
+      <a href="../payments/" class="nav-link active">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Payments & bKash
+      </a>
+      <a href="../users/" class="nav-link">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        Candidates & Users
+      </a>
+      <a href="../licenses/" class="nav-link">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+        License Manager
+      </a>
+    </nav>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-title">
+        <h1>Payment Ledger & Gateway Transactions</h1>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn btn-primary btn-sm" onclick="alert('Exporting CSV transaction ledger...')">Export CSV</button>
+      </div>
+    </header>
+
+    <div class="content-body">
+      <div class="card">
+        <div class="toolbar">
+          <input type="text" id="trxSearch" class="search-input" placeholder="Search by TrxID, Phone, or Candidate..." oninput="filterTransactions()">
+          <select class="form-control" style="width: 160px;" id="gatewayFilter" onchange="filterTransactions()">
+            <option value="all">All Gateways</option>
+            <option value="bkash">bKash</option>
+            <option value="nagad">Nagad</option>
+            <option value="manual">Manual</option>
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Invoice #</th>
+                <th>Transaction ID</th>
+                <th>Sender / Account</th>
+                <th>Gateway</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Timestamp</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="paymentTableBody">
+              <tr>
+                <td>INV-8F12E09</td>
+                <td><code>BK-9H4K2M8P</code></td>
+                <td>01711-223344 (Md. Saiful Islam)</td>
+                <td><span class="badge badge-info">bKash PG</span></td>
+                <td><strong>৳ 300.00</strong></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>2026-11-22 14:45</td>
+                <td><button class="btn btn-outline btn-sm" onclick="copyToClipboard('BK-9H4K2M8P', this)">Copy Trx</button></td>
+              </tr>
+              <tr>
+                <td>INV-4B77A19</td>
+                <td><code>NGD-7B2X9L1Q</code></td>
+                <td>01822-334455 (Millat Hossain)</td>
+                <td><span class="badge badge-warning">Nagad PG</span></td>
+                <td><strong>৳ 500.00</strong></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>2026-11-22 13:12</td>
+                <td><button class="btn btn-outline btn-sm" onclick="copyToClipboard('NGD-7B2X9L1Q', this)">Copy Trx</button></td>
+              </tr>
+              <tr>
+                <td>INV-2A99D81</td>
+                <td><code>BK-3C8R5T9V</code></td>
+                <td>01933-445566 (Tareq Rahman)</td>
+                <td><span class="badge badge-info">bKash PG</span></td>
+                <td><strong>৳ 300.00</strong></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>2026-11-22 11:30</td>
+                <td><button class="btn btn-outline btn-sm" onclick="copyToClipboard('BK-3C8R5T9V', this)">Copy Trx</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/admin.js"></script>
+  <script>
+    async function loadPayments() {
+      const txns = await fetchWithFallback('/payments/history/', null);
+      if (txns && txns.length > 0) {
+        const tbody = document.getElementById('paymentTableBody');
+        tbody.innerHTML = txns.map(t => `
+          <tr>
+            <td>${t.invoice_number || 'INV-0000'}</td>
+            <td><code>${t.trx_id}</code></td>
+            <td>${t.sender_number || t.username}</td>
+            <td><span class="badge badge-info">${t.gateway.toUpperCase()}</span></td>
+            <td><strong>৳ ${parseFloat(t.amount).toFixed(2)}</strong></td>
+            <td><span class="badge badge-success">${t.status}</span></td>
+            <td>${t.created_at ? t.created_at.substring(0, 16).replace('T', ' ') : 'Just now'}</td>
+            <td><button class="btn btn-outline btn-sm" onclick="copyToClipboard('${t.trx_id}', this)">Copy Trx</button></td>
+          </tr>
+        `).join('');
+      }
+    }
+    loadPayments();
+
+    function filterTransactions() {
+      const q = document.getElementById('trxSearch').value.toLowerCase();
+      const rows = document.querySelectorAll('#paymentTableBody tr');
+      rows.forEach(r => {
+        const text = r.innerText.toLowerCase();
+        r.style.display = text.includes(q) ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
