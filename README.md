@@ -3,20 +3,20 @@
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Extension%20MV3-blue.svg?logo=googlechrome)](https://developer.chrome.com/docs/extensions/)
 [![Backend: Django REST](https://img.shields.io/badge/Backend-Django%205.2%20DRF-092e20.svg?logo=django)](https://www.djangoproject.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Privacy: 100% Local](https://img.shields.io/badge/Privacy-100%25%20Offline%20Local-success.svg)](PRIVACY_POLICY.md)
+[![Privacy: 100% Local](https://img.shields.io/badge/Privacy-100%25%20Offline%20Local-success.svg)](frontend/extension/PRIVACY_POLICY.md)
 
 A complete, production-ready commercial SaaS platform and privacy-focused Chrome Extension designed to eliminate tedious manual typing on all Bangladesh Government Job Recruitment portals (`*.teletalk.com.bd`). Fill complex multi-page government job applications in **1 click**, manage **multiple candidate profiles** directly on the webpage, automatically upload resized **300×300 passport photos** and **300×80 signatures**, and monetize via **bKash / Nagad subscription licenses**.
 
 ---
 
-## 🏗️ Project Architecture
+## 🏗️ Clean Project Architecture (2 Main Directories)
 
 ```text
 jobapplication/
 │
 ├── frontend/
 │   │
-│   ├── extension/                    # Unpacked Chrome Extension (Manifest V3)
+│   ├── extension/                    # 🚀 Chrome Extension (Load this folder in Chrome)
 │   │   ├── manifest.json
 │   │   ├── background.js
 │   │   ├── content.js
@@ -28,9 +28,11 @@ jobapplication/
 │   │   ├── site-mappings.js
 │   │   ├── validation.js
 │   │   ├── passport-photo-editor.js
+│   │   ├── PRIVACY_POLICY.md
+│   │   ├── tests/                    # Offline Form Testing Suite
 │   │   └── icons/
 │   │
-│   └── admin-dashboard/              # Modern SaaS Admin Web Portal
+│   └── admin-dashboard/              # 💻 SaaS Admin Web Portal
 │       ├── assets/css/admin.css
 │       ├── assets/js/admin.js
 │       ├── login/index.html          # Superuser Authentication
@@ -39,22 +41,21 @@ jobapplication/
 │       ├── users/index.html          # Candidate Accounts & Directory
 │       └── licenses/index.html       # BDJOB License Key Management
 │
-├── backend/                          # Django REST Framework Backend
+├── backend/                          # ⚙️ Django REST Framework Backend
 │   ├── config/                       # Settings, ASGI/WSGI, Root URLs
 │   ├── accounts/                     # Custom User Model & Auth
 │   ├── subscriptions/                # Plans (Free, Standard, Pro, Cyber Cafe)
 │   ├── payments/                     # bKash Tokenized & Nagad PG APIs
 │   ├── licenses/                     # Multi-device Key Verification Engine
 │   ├── api/                          # Analytics & Health Checks
+│   ├── docs/                         # Technical API & Deployment Guides
+│   │   ├── API.md
+│   │   ├── DATABASE.md
+│   │   └── DEPLOYMENT.md
 │   ├── seed_data.py                  # Database Seeder (Admin & Plans)
 │   ├── requirements.txt              # Production Dependencies
 │   ├── .env                          # Environment Variables
 │   └── manage.py
-│
-├── docs/                             # Technical Documentation
-│   ├── API.md                        # Full REST API Reference
-│   ├── DATABASE.md                   # Schema & ER Diagrams
-│   └── DEPLOYMENT.md                 # Ubuntu, Nginx, Gunicorn & SSL Guide
 │
 └── README.md
 ```
@@ -114,12 +115,13 @@ python manage.py runserver
 ---
 
 ## 📚 Documentation
-- [REST API Reference](docs/API.md)
-- [Database Schema & ER Diagrams](docs/DATABASE.md)
-- [Production Deployment Guide](docs/DEPLOYMENT.md)
+- [REST API Reference](backend/docs/API.md)
+- [Database Schema & ER Diagrams](backend/docs/DATABASE.md)
+- [Production Deployment Guide](backend/docs/DEPLOYMENT.md)
 
 ---
 
 ## 📄 License & Privacy
 - Extension operates **100% offline and locally** on the user's browser.
 - Open-source under the [MIT License](LICENSE).
+- [Privacy Policy](frontend/extension/PRIVACY_POLICY.md)
