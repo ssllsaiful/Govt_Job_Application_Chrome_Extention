@@ -1,0 +1,18 @@
+{
+  "name": "bdjob-admin-dashboard",
+  "version": "1.0.0",
+  "description": "Modern SaaS Admin Web Console for Teletalk Job Application Engine",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx --yes serve . -l 3000",
+    "dev": "npx --yes serve . -l 3000",
+    "build": "echo \"Dashboard is 100% static & ready! No build step needed.\""
+  },
+  "keywords": [
+    "admin-dashboard",
+    "teletalk-autofill",
+    "saas"
+  ],
+  "author": "Saiful Islam",
+  "license": "MIT"
+}
